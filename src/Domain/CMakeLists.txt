@@ -5,14 +5,18 @@ set(AIRPLANE_SRC_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 
 set (
 	AIRPLANE_SRCS
-	abcdef.cpp
+	Airplane.cpp
 )
 
 set (
 	AIRPLANE_HEADERS
-	abcdef.h
+	Airplane.h
 )
 
-add_library(airplane STATIC ${AIRPLANE_SRCS} ${AIRPLANE_HEADERS})
+include_directories(${google_test_include_dirs})
+
+add_executable(airplane ${AIRPLANE_HEADERS} ${AIRPLANE_SRCS})
 
 target_include_directories(airplane PUBLIC ${AIRPLANE_SRC_DIR})
+
+target_link_libraries(airplane google-test)
