@@ -1,33 +1,36 @@
 #include "Airplane.h"
 
-Airplane::Airplane() : passengers(0)
+Airplane::Airplane()
 {
    generateRandomName();
+   setTotalPassengers();
 }
 
 Airplane::~Airplane()
 {
 }
 
-int Airplane::getTotalPassengers()
+int Airplane::generateRandomNum(int outset, int end)
 {
-   return passengers;
-}
+   random_device rd;
+   mt19937 eng(rd());
+   uniform_int_distribution<> distr(outset, end);
 
-string Airplane::getName()
-{
-   return name;
+   return distr(eng);
 }
-
 
 void Airplane::generateRandomName()
 {
-   istringstream aux;
-   fstream fs("C:\\Users\joao.mathias\source\repos\Airport\src\Domain\planes.txt");
+   ifstream in("C:/Users/joao.mathias/source/repos/Airport/src/Domain/planes.txt");
+   
+   int limit= generateRandomNum(1, 38);
+   string s;
 
-   fs.seekg(ios::beg);
-   getline(fs, name);
+   for (int i= 0; i <= limit; i++ ) 
+      getline(in, s);
 
-   fs.close();
+   getline(in, s);
+
+   setName(s);
 }
 

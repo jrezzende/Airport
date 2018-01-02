@@ -17,11 +17,17 @@ protected:
    }
 };
 
-TEST_F(AirplaneTest, settingRandomName) {
-   ASSERT_EQ("ACS - 100 Sora", airplane->getName());
+TEST_F(AirplaneTest, initializingPassengers) {
+   cout << airplane->getTotalPassengers() << endl;
+   ASSERT_LT(airplane->getTotalPassengers(), 150);
 }
 
-TEST_F(AirplaneTest, initializingPassengers) {
-   ASSERT_EQ(0, airplane->getTotalPassengers());
+TEST_F(AirplaneTest, generateRandomNumber) {
+   ASSERT_LT(airplane->generateRandomNum(1, 99), 100);
+}
+
+TEST_F(AirplaneTest, generateRandomName) {
+   cout << airplane->getName() << endl;
+   ASSERT_NE("", airplane->getName());
 }
 

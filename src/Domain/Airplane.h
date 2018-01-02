@@ -1,9 +1,11 @@
+#pragma once
 #ifndef INCLUDED_AIRPLANE_H
 #define INCLUDED_AIRPLANE_H
 
 #include <string>
+#include <random>
+#include <iostream>
 #include <fstream>
-#include <sstream>
 
 using namespace std;
 
@@ -20,9 +22,12 @@ public:
    Airplane();
    ~Airplane();
 
-   int getTotalPassengers();
+   void setTotalPassengers() { passengers= generateRandomNum(50, 150); }
+   int getTotalPassengers() { return passengers; }
+   string getName() { return name; }
+   void setName(string newValue) { name= newValue; }
+   int generateRandomNum(int outset, int end);
    void generateRandomName();
-   string getName();
 };
 
 #endif // !INCLUDED_AIRPLANE_H
