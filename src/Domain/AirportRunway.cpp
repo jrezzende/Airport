@@ -1,6 +1,6 @@
 #include "AirportRunway.h"
 
-AirportRunway::AirportRunway(const Directions::Direction vRunwayDirection) : runWayDirection(vRunwayDirection), isAvailable(true)
+AirportRunway::AirportRunway(const Directions::Direction vRunwayDirection) : runWayDirection(vRunwayDirection), isAvailable(true), willBeAvailableIn(0)
 {
 }
 
@@ -16,6 +16,8 @@ Directions::Direction AirportRunway::getRunwayDirection()
 bool AirportRunway::changeRunwayState(bool flag)
 {
    isAvailable= flag;
+
+   return isAvailable;
 }
 
 bool AirportRunway::isRunwayFree()
@@ -23,7 +25,7 @@ bool AirportRunway::isRunwayFree()
    return isAvailable;
 }
 
-int AirportRunway::remainingTimeToUse()
+int AirportRunway::remainingTime()
 {
    return willBeAvailableIn;
 }

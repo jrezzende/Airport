@@ -4,21 +4,35 @@
 
 Airport::Airport()
 {
-   airportRunways[0] = new AirportRunway(Directions::SOUTH);
-   airportRunways[1] = new AirportRunway(Directions::WEST);
-   airportRunways[2] = new AirportRunway(Directions::SOUTHWEST);
+   airportRunways[0] = new AirportRunway(Directions::NORTH_SOUTH);
+   airportRunways[1] = new AirportRunway(Directions::EAST_WEST);
+   airportRunways[2] = new AirportRunway(Directions::NORTHEAST_SOUTHWEST);
+
+   airportIsAvailable= true;
 }
 
 Airport::~Airport()
 {
-}
-
-Airport * Airport::getInstance()
-{
-   return s_instance;
+   for (int i= 0; i < 3; i++) {
+      delete airportRunways[i];
+   }
 }
 
 bool Airport::airportAvailable()
 {
-   return false;
+   return airportIsAvailable;
 }
+
+////////////////////////////////////
+
+Airport * Airport::instance= nullptr;
+
+Airport * Airport::getInstance()
+{
+   if (!instance)
+      instance= new Airport();
+
+   return instance;
+}
+
+

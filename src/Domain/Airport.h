@@ -8,10 +8,12 @@ class Airplane;
 class Airport
 {
 private:
-   static Airport* s_instance;
+   static Airport* instance;
    AirportRunway* airportRunways[3];
 
    Airport();
+
+   bool airportIsAvailable;
 
 public:
    ~Airport();

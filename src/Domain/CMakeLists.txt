@@ -6,11 +6,12 @@ set(DOMAIN_SRC_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 set (
 	DOMAIN_SRCS
 	Airplane.cpp
-	AirplaneTest.cpp
+	AirportTest.cpp
 	AirplaneMain.cpp
 	Airport.cpp
 	AirportRunway.cpp
 	Directions.cpp
+	Wind.cpp
 )
 
 set (
@@ -19,6 +20,7 @@ set (
 	Airport.h
 	AirportRunway.h
 	Directions.h
+	Wind.h
 )
 
 include_directories(${google_test_include_dirs})

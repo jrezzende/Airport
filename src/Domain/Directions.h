@@ -10,14 +10,14 @@ using namespace std;
 namespace Directions
 {
    enum Direction {
-      NORTH,
-      SOUTH,
-      EAST,
-      WEST,
-      NORTHWEST,
-      NORTHEAST,
-      SOUTHWEST,
-      SOUTHEAST
+      NORTH_SOUTH,
+      SOUTH_NORTH,
+      EAST_WEST,
+      WEST_EAST,
+      NORTHWEST_SOUTHEAST,
+      NORTHEAST_SOUTHWEST,
+      SOUTHWEST_NORTHEAST,
+      SOUTHEAST_NORTHWEST
    };
 
    string toString(Direction dir);

@@ -21,7 +21,7 @@ public:
    Directions::Direction getRunwayDirection();
    bool changeRunwayState(bool flag);
    bool isRunwayFree();
-   int remainingTimeToUse();
+   int remainingTime();
 };
 
 #endif // !INCLUDED_AIRPORTRUNWAY_H
