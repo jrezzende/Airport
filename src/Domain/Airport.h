@@ -4,6 +4,7 @@
 
 class AirportRunway;
 class Airplane;
+class Wind;
 
 class Airport
 {
@@ -18,6 +19,10 @@ private:
 public:
    ~Airport();
    static Airport* getInstance();
+
+   AirportRunway* getAvailableRunway();
+   void enableRunwayWind(); // wind
+   void enableRunwayTime(); // time
 
    bool airportAvailable();
 };

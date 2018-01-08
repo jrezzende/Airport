@@ -12,6 +12,7 @@ set (
 	AirportRunway.cpp
 	Directions.cpp
 	Wind.cpp
+	WindGenerator.cpp
 )
 
 set (
@@ -21,12 +22,15 @@ set (
 	AirportRunway.h
 	Directions.h
 	Wind.h
+	WindGenerator.h
 )
 
 include_directories(${google_test_include_dirs})
+include_directories(${timer})
 
 add_executable(domain ${DOMAIN_HEADERS} ${DOMAIN_SRCS})
 
 target_include_directories(domain PUBLIC ${DOMAIN_SRC_DIR})
 
 target_link_libraries(domain google-test)
+target_link_libraries(domain timer)

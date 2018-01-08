@@ -1,6 +1,17 @@
 #include "Airport.h"
 #include "Directions.h"
 #include "AirportRunway.h"
+#include "WindGenerator.h"
+
+Airport * Airport::instance= nullptr;
+
+Airport * Airport::getInstance()
+{
+   if (!instance)
+      instance= new Airport();
+
+   return instance;
+}
 
 Airport::Airport()
 {
@@ -23,16 +34,22 @@ bool Airport::airportAvailable()
    return airportIsAvailable;
 }
 
-////////////////////////////////////
-
-Airport * Airport::instance= nullptr;
-
-Airport * Airport::getInstance()
+AirportRunway * Airport::getAvailableRunway()
 {
-   if (!instance)
-      instance= new Airport();
+   return nullptr;
+}
 
-   return instance;
+WindGenerator gen; // must be changed later, when the a model is created *TEST PURPOSES ONLY*
+
+void Airport::enableRunwayWind()
+{
+   Wind* wind= gen.getCurrent();
+
+   if(wind->getWindDirection() != Directions::NORTHEAST_SOUTHWEST && wind->getWindDirection()) {}
+}
+
+void Airport::enableRunwayTime()
+{
 }
 
 
