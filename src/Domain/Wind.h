@@ -4,7 +4,7 @@
 #define INCLUDED_WIND_H
 
 #include "Directions.h"
-#include <random>
+#include "RandomGen.h"
 
 class Wind
 {

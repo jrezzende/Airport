@@ -21,6 +21,7 @@ namespace Directions
    };
 
    string toString(Direction dir);
+   // bool areNotTransverses(Direction dir1, Direction dir2);
 }
 
 #endif // !INCLUDED_DIRECTIONS_H

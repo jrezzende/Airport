@@ -10,27 +10,49 @@ Airplane::~Airplane()
 {
 }
 
-int Airplane::generateRandomNum(int outset, int end)
+void Airplane::setAirline(int num)
 {
-   random_device rd;
-   mt19937 eng(rd());
-   uniform_int_distribution<> distr(outset, end);
-
-   return distr(eng);
+   switch (num) 
+   {
+   case 0:
+      airline= "Azul Trip"; break;
+   case 1:
+      airline= "NHT"; break;
+   case 2:
+      airline= "Avianca"; break;
+   case 3:
+      airline= "Passaredo"; break;
+   case 4:
+      airline= "Puma"; break;
+   case 5:
+      airline= "TAM"; break;
+   case 6:
+      airline= "TOTAL"; break;
+   case 7:
+      airline= "Gol/VARIG"; break;
+   case 8:
+      airline= "WEBJET"; break;
+   }
 }
 
 void Airplane::generateRandomName()
 {
-   ifstream in("C:/Users/joao.mathias/source/repos/Airport/src/Domain/planes.txt");
+   std::ifstream in("C:/Users/joao.mathias/source/repos/Airport/src/Domain/planes.txt");
    
-   int limit= generateRandomNum(1, 38);
-   string s;
+   int manufacturerCounter= 0;
+   int limit= RandomGen::generateRandom(1, 38);
+   std::string s;
 
-   for (int i= 0; i <= limit; i++ ) 
+   for (int i= 0; i <= limit; i++) {
       getline(in, s);
+      if (s == "-") {
+         i++;
+         getline(in, s);
+         manufacturerCounter++;
+      }
+   }
 
-   getline(in, s);
-
+   setAirline(manufacturerCounter);
    setName(s);
 }
 

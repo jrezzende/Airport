@@ -2,6 +2,8 @@
 #ifndef INCLUDED_AIRPORT_H
 #define INCLUDED_AIRPORT_H
 
+#include <string>
+
 class AirportRunway;
 class Airplane;
 class Wind;
@@ -14,17 +16,19 @@ private:
 
    Airport();
 
+   std::string airportName= "Aeroporto Internacional Hercílio Luz";
    bool airportIsAvailable;
+   int maxAirplanesOnGround;
 
 public:
    ~Airport();
    static Airport* getInstance();
 
    AirportRunway* getAvailableRunway();
-   void enableRunwayWind(); // wind
-   void enableRunwayTime(); // time
-
+   void enableRunwayWind(); 
+   void enableRunwayTime(); 
    bool airportAvailable();
+   int setMaxPlanesOnGround(int limit) { maxAirplanesOnGround= limit; }
 };
 
 #endif // !INCLUDED_AIRPORT_H

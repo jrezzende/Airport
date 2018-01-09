@@ -2,11 +2,7 @@
 
 Wind::Wind()
 {
-   random_device rd;
-   mt19937 eng(rd());
-   uniform_int_distribution<> distr(1, 8);
-
-   int randomNum= distr(eng);
+   int randomNum= RandomGen::generateRandom(1, 8);
 
    switch (randomNum) {
    case 1: windDirection= Directions::NORTH_SOUTH; break;
