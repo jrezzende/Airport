@@ -13,14 +13,12 @@ Directions::Direction AirportRunway::getRunwayDirection()
    return runWayDirection;
 }
 
-bool AirportRunway::changeRunwayState(bool flag)
+void AirportRunway::changeRunwayState(bool flag)
 {
    isAvailable= flag;
-
-   return isAvailable;
 }
 
-bool AirportRunway::isRunwayFree()
+bool AirportRunway::isRunwayAvailable()
 {
    return isAvailable;
 }

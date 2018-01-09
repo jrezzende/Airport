@@ -2,18 +2,18 @@
 #ifndef INCLUDED_AIRPLANE_H
 #define INCLUDED_AIRPLANE_H
 
+#include "RandomGen.h"
+
 #include <string>
-#include <random>
 #include <iostream>
 #include <fstream>
-
-using namespace std;
 
 class Airplane
 {
 private:
    int passengers;
-   string name;
+   std::string name;
+   std::string airline;
 
    Airplane(const Airplane& rhs);
    Airplane& operator= (const Airplane& rhs);
@@ -22,11 +22,11 @@ public:
    Airplane();
    ~Airplane();
 
-   void setTotalPassengers() { passengers= generateRandomNum(50, 150); }
+   void setTotalPassengers() { passengers= RandomGen::generateRandom(50, 150); }
    int getTotalPassengers() { return passengers; }
-   string getName() { return name; }
-   void setName(string newValue) { name= newValue; }
-   int generateRandomNum(int outset, int end);
+   std::string getName() { return name; }
+   void setName(std::string newValue) { name= newValue; }
+   void setAirline(int num);
    void generateRandomName();
 };
 

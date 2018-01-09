@@ -1,7 +1,8 @@
 #include "Airport.h"
 #include "Directions.h"
 #include "AirportRunway.h"
-#include "WindGenerator.h"
+#include "WindController.h"
+#include "Timer.h"
 
 Airport * Airport::instance= nullptr;
 
@@ -12,6 +13,8 @@ Airport * Airport::getInstance()
 
    return instance;
 }
+
+////////////////////////////////
 
 Airport::Airport()
 {
@@ -36,20 +39,49 @@ bool Airport::airportAvailable()
 
 AirportRunway * Airport::getAvailableRunway()
 {
+   enableRunwayWind();
+   enableRunwayTime();
+
+   for (int i= 0; i < 3; i++) {
+      if (airportRunways[i]->isRunwayAvailable()) {
+         airportIsAvailable= true;
+         return airportRunways[i];
+      }
+   }
+   airportIsAvailable= false;
    return nullptr;
 }
 
-WindGenerator gen; // must be changed later, when the a model is created *TEST PURPOSES ONLY*
+WindController wcontrol; // must be changed later, when model is created *TEST PURPOSES ONLY*
 
-void Airport::enableRunwayWind()
+void Airport::enableRunwayWind() // if the winds are transversal
 {
-   Wind* wind= gen.getCurrent();
+   Wind* wind= wcontrol.getCurrent();
 
-   if(wind->getWindDirection() != Directions::NORTHEAST_SOUTHWEST && wind->getWindDirection()) {}
+   if (wind->getWindDirection() != Directions::NORTH_SOUTH && wind->getWindDirection() != Directions::SOUTH_NORTH)
+      airportRunways[0]->changeRunwayState(false);
+   else
+      airportRunways[0]->changeRunwayState(true);
+
+   if (wind->getWindDirection() != Directions::EAST_WEST && wind->getWindDirection() != Directions::WEST_EAST)
+      airportRunways[1]->changeRunwayState(false);
+   else
+      airportRunways[1]->changeRunwayState(true);
+
+   if (wind->getWindDirection() != Directions::NORTHEAST_SOUTHWEST && wind->getWindDirection() != Directions::SOUTHWEST_NORTHEAST)
+      airportRunways[2]->changeRunwayState(false);
+   else
+      airportRunways[2]->changeRunwayState(true);
 }
 
-void Airport::enableRunwayTime()
+void Airport::enableRunwayTime() // remaining time that the runway is blocked
 {
+   for (int i = 0; i < 3; i++) {
+      if (!Timer::getInstance()->getActualTime() >= airportRunways[i]->remainingTime())
+         airportRunways[i]->changeRunwayState(false);
+      else
+         airportRunways[i]->changeRunwayState(true);
+   }
 }
 
 

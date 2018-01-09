@@ -1,38 +1,35 @@
-ACS-100 Sora
-Aeromot AMT-300 Turbo Ximango Shark
-Aeromot AMT-600 Guri
-Aerotec T-23 Uirapuru
-Anequim
-Embraer CBA-123
-CEA-311 Anequim
-CNNA HL-6
-Embraer EMB-110
-Embraer EMB 120
-Embraer EMB-111
-Embraer EMB-121
-Embraer EMB-145 AEW&C
-Embraer EMB-200
-Embraer EMB-314
-Embraer EMB-710
-Embraer EMB-711
-Embraer EMB-712
-Embraer EMB-720
-Embraer EMB-721
-Embraer EMB-810
-Embraer EMB-820
-Embraer EMB-821
-Embraer ERJ
-Embraer KC-390
-Embraer Legacy
-Embraer Legacy 600
-Embraer Lineage 1000
-Embraer Phenom 100
-Embraer Phenom 300
-Muniz M-7
-Neiva P-56 Paulistinha
-Neiva Regente
-Neiva T-25
-P1
-Paulistinha CAP-4
-Quasar Lite II
-Sora-e
+Embraer 190
+Embraer 195
+ATR 72-200
+ATR 72-600
+Embraer 175
+ATR 72
+ATR 42
+-
+LET 410 UVP-E20
+-
+F100 MK28
+Airbus 319
+Airbus 318
+Airbus 320
+-
+Embraer ERJ 145
+ATR 72-600
+-
+Boeing 737-300
+-
+Airbus 319-100 
+Airbus 320-200 
+Airbus 321-200
+A330-200
+Airbus 340-500 
+Boeing 767-300ER 
+Boeing 777-300ER 
+-
+ATR-42 500 
+Boeings 727-200 Full-Cargo
+-
+Boeing 737-700 
+Boeing 737-800 
+-
+Boeing 737-300 

@@ -19,8 +19,8 @@ public:
    ~AirportRunway();
 
    Directions::Direction getRunwayDirection();
-   bool changeRunwayState(bool flag);
-   bool isRunwayFree();
+   void changeRunwayState(bool flag);
+   bool isRunwayAvailable();
    int remainingTime();
 };
 

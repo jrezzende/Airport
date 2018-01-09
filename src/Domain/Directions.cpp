@@ -4,14 +4,27 @@ string Directions::toString(Direction dir)
 {
    switch(dir) 
    {
-   case NORTH_SOUTH: return "North south";
-   case SOUTH_NORTH: return "South north";
-   case EAST_WEST: return "East west";
-   case WEST_EAST: return "West east";
-   case NORTHWEST_SOUTHEAST: return "Northwest southeast";
-   case NORTHEAST_SOUTHWEST: return "Northeast southwest";
-   case SOUTHWEST_NORTHEAST: return "Southwest northeast";
-   case SOUTHEAST_NORTHWEST: return "Southeast northwest";
+   case NORTH_SOUTH: return "North-south";
+   case SOUTH_NORTH: return "South-north";
+   case EAST_WEST: return "East-west";
+   case WEST_EAST: return "West-east";
+   case NORTHWEST_SOUTHEAST: return "Northwest-southeast";
+   case NORTHEAST_SOUTHWEST: return "Northeast-southwest";
+   case SOUTHWEST_NORTHEAST: return "Southwest-northeast";
+   case SOUTHEAST_NORTHWEST: return "Southeast-northwest";
    default: return "Wind couldn't be identified";
    }
 }
+
+//bool Directions::areNotTransverses(Direction dir1, Direction dir2)
+//{
+//   switch (dir1)
+//   {
+//   case NORTH_SOUTH:
+//      return dir2 == SOUTH_NORTH;
+//   case EAST_WEST:
+//      return dir2 == WEST_EAST;
+//   case NORTHEAST_SOUTHWEST:
+//      return dir2 == SOUTHWEST_NORTHEAST;
+//   }
+//}

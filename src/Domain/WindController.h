@@ -11,7 +11,7 @@
 
 using namespace std;
 
-class WindGenerator
+class WindController
 {
 private:
    Wind* current;
@@ -19,8 +19,8 @@ private:
    vector<string> nextWinds;
 
 public:
-   WindGenerator();
-   ~WindGenerator();
+   WindController();
+   ~WindController();
 
    Wind* getCurrent();
    void generateWind();
