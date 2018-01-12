@@ -9,18 +9,17 @@ using namespace std;
 
 class Timer 
 {
-private:
    static Timer* timer;
    time_t actualTime;
    unsigned long begTime;
 
 public:
    Timer();
-   ~Timer();
+   ~Timer() = default;
 
    static Timer* getInstance();
    unsigned long getTime();
-   time_t getActualTime() { return actualTime; }
+   time_t getActualTime() const { return actualTime; }
 
    void aSec(unsigned long elapsed);
    void startTime();

@@ -1,16 +1,21 @@
 #include "Airplane.h"
+#include "Timer.h"
+#include <sstream>
+#include <fstream>
 
-Airplane::Airplane()
+Airplane::Airplane(const unsigned long timeForArrival) : passengers(), name(""), airline(""), departureTime(0), landingTime(0)
 {
    generateRandomName();
    setTotalPassengers();
+   arrivalTime=  timeForArrival + rand() % 4 + 1;
 }
 
-Airplane::~Airplane()
+void Airplane::setDepartureTime(const unsigned long timeForDeparture)
 {
+   departureTime= timeForDeparture + rand() % 10 + 5;
 }
 
-void Airplane::setAirline(int num)
+void Airplane::setAirline(int const num)
 {
    switch (num) 
    {
@@ -32,6 +37,8 @@ void Airplane::setAirline(int num)
       airline= "Gol/VARIG"; break;
    case 8:
       airline= "WEBJET"; break;
+   default:
+      airline= "undefined"; break;
    }
 }
 
@@ -39,20 +46,19 @@ void Airplane::generateRandomName()
 {
    std::ifstream in("C:/Users/joao.mathias/source/repos/Airport/src/Domain/planes.txt");
    
-   int manufacturerCounter= 0;
-   int limit= RandomGen::generateRandom(1, 38);
+   auto airlineCounter= 0;
+   const auto limit= RandomGen::generateRandom(1, 38);
    std::string s;
 
-   for (int i= 0; i <= limit; i++) {
+   for (auto i= 0; i <= limit; i++) {
       getline(in, s);
       if (s == "-") {
-         i++;
          getline(in, s);
-         manufacturerCounter++;
+         airlineCounter++;
       }
    }
 
-   setAirline(manufacturerCounter);
+   setAirline(airlineCounter);
    setName(s);
 }
 

@@ -5,8 +5,6 @@
 #include "RandomGen.h"
 
 #include <string>
-#include <iostream>
-#include <fstream>
 
 class Airplane
 {
@@ -14,18 +12,22 @@ private:
    int passengers;
    std::string name;
    std::string airline;
-
-   Airplane(const Airplane& rhs);
-   Airplane& operator= (const Airplane& rhs);
+   long arrivalTime;
+   long departureTime;
+   long landingTime;
 
 public:
-   Airplane();
-   ~Airplane();
+   Airplane(const unsigned long timeForArrival);
+   ~Airplane() = default;
 
    void setTotalPassengers() { passengers= RandomGen::generateRandom(50, 150); }
-   int getTotalPassengers() { return passengers; }
-   std::string getName() { return name; }
-   void setName(std::string newValue) { name= newValue; }
+   int getTotalPassengers() const { return passengers; }
+   std::string getName() const { return name; }
+   long getArrivalTime() const { return arrivalTime; }
+   long getDepartureTime() const { return departureTime; }
+   void setDepartureTime(const unsigned long timeForDeparture);
+   long getLandingTime() const { return landingTime; }
+   void setName(const std::string &newValue) { name= newValue; }
    void setAirline(int num);
    void generateRandomName();
 };

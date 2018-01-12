@@ -1,6 +1,6 @@
 #include "Directions.h"
 
-string Directions::toString(Direction dir)
+string Directions::toString(Direction const dir)
 {
    switch(dir) 
    {
@@ -15,16 +15,3 @@ string Directions::toString(Direction dir)
    default: return "Wind couldn't be identified";
    }
 }
-
-//bool Directions::areNotTransverses(Direction dir1, Direction dir2)
-//{
-//   switch (dir1)
-//   {
-//   case NORTH_SOUTH:
-//      return dir2 == SOUTH_NORTH;
-//   case EAST_WEST:
-//      return dir2 == WEST_EAST;
-//   case NORTHEAST_SOUTHWEST:
-//      return dir2 == SOUTHWEST_NORTHEAST;
-//   }
-//}

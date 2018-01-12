@@ -4,10 +4,6 @@ AirportRunway::AirportRunway(const Directions::Direction vRunwayDirection) : run
 {
 }
 
-AirportRunway::~AirportRunway()
-{
-}
-
 Directions::Direction AirportRunway::getRunwayDirection()
 {
    return runWayDirection;

@@ -2,7 +2,7 @@
 
 Wind::Wind()
 {
-   int randomNum= RandomGen::generateRandom(1, 8);
+   const auto randomNum= RandomGen::generateRandom(1, 8);
 
    switch (randomNum) {
    case 1: windDirection= Directions::NORTH_SOUTH; break;
@@ -13,10 +13,7 @@ Wind::Wind()
    case 6: windDirection= Directions::NORTHEAST_SOUTHWEST; break;
    case 7: windDirection= Directions::SOUTHWEST_NORTHEAST; break;
    case 8: windDirection= Directions::SOUTHEAST_NORTHWEST; break;
+   default: NULL;
    }
 
-}
-
-Wind::~Wind()
-{
 }

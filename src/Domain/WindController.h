@@ -1,5 +1,4 @@
 #pragma once
-
 #ifndef INCLUDED_WINDGENERATOR_H
 #define INCLUDED_WINDGENERATOR_H
 
@@ -20,7 +19,7 @@ private:
 
 public:
    WindController();
-   ~WindController();
+   ~WindController() = default;
 
    Wind* getCurrent();
    void generateWind();

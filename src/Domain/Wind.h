@@ -1,5 +1,4 @@
 #pragma once
-
 #ifndef INCLUDED_WIND_H
 #define INCLUDED_WIND_H
 
@@ -13,9 +12,9 @@ private:
 
 public:
    Wind();
-   ~Wind();
+   ~Wind() = default;
 
-   Directions::Direction getWindDirection() { return windDirection; }
+   Directions::Direction getWindDirection() const { return windDirection; }
 };
 
 #endif // !INCLUDED_WIND_H

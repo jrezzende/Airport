@@ -5,14 +5,16 @@ set(MODEL_SRC_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 
 set (
 	MODEL_SRCS
-	Data.cpp
+	Model.cpp
 )
 
 set (
 	MODEL_HEADERS
-	Data.h
+	Model.h
 )
 
 add_library(model STATIC ${MODEL_SRCS} ${MODEL_HEADERS})
 
 target_include_directories(model PUBLIC ${MODEL_SRC_DIR})
+
+target_link_libraries(model domain)

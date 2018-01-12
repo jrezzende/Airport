@@ -3,11 +3,7 @@
 Timer::Timer()
 {
    time(&actualTime);
-   begTime= getActualTime();
-}
-
-Timer::~Timer()
-{
+   begTime= unsigned long(getActualTime());
 }
 
 Timer* Timer::timer= nullptr;
@@ -22,33 +18,32 @@ Timer * Timer::getInstance()
 
 unsigned long Timer::getTime()
 {
-   return time(&actualTime);
+   return unsigned long(time(&actualTime));
 }
 
-void Timer::aSec(unsigned long elapsed)
+void Timer::aSec(const unsigned long elapsed)
 {
    _sleep(1000 - elapsed);
 }
 
 void Timer::startTime()
 {
-   unsigned long limit= begTime + 1440;
+    const auto limit= begTime + 1440;
    
    for (; Timer::getInstance()->getActualTime() <= limit; Timer::getInstance()->aSec(0), Timer::getInstance()->getTime())
    {
-      unsigned long elapsedTime= begTime + difftime(Timer::getInstance()->getActualTime(), begTime);
+      unsigned long elapsedTime= begTime + unsigned long(difftime(Timer::getInstance()->getActualTime(), begTime));
 
       if (difftime(Timer::getInstance()->getActualTime(), begTime) > 0)
-         elapsedTime= begTime + difftime(Timer::getInstance()->getActualTime(), begTime) * 240;
+         elapsedTime= begTime + unsigned long(difftime(Timer::getInstance()->getActualTime(), begTime) * 240);
    }
 }
 
 string Timer::formatTime(time_t time)
 {
-   struct tm* actualTime;
+   struct tm* actualTime= localtime(&time);;
    char buffer[80];
 
-   actualTime= localtime(&time);
    strftime(buffer, 80, "%H:%M %d/%m/%y", actualTime);
 
    return string(buffer);
@@ -56,7 +51,7 @@ string Timer::formatTime(time_t time)
 
 unsigned long Timer::timeElapsed()
 {
-   return begTime + difftime(getActualTime(), begTime) * 240;
+   return begTime + unsigned long(difftime(getActualTime(), begTime) * 240);
 }
 
 string Timer::getFormattedTime()

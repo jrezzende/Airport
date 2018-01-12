@@ -16,7 +16,7 @@ private:
 
 public:
    AirportRunway(const Directions::Direction vRunwayDirection);
-   ~AirportRunway();
+   ~AirportRunway() = default;
 
    Directions::Direction getRunwayDirection();
    void changeRunwayState(bool flag);

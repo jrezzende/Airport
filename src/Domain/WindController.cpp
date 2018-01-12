@@ -6,11 +6,6 @@ WindController::WindController()
    generateWind();
 }
 
-WindController::~WindController()
-{
-   ////
-}
-
 Wind * WindController::getCurrent()
 {
    return current;
@@ -19,7 +14,7 @@ Wind * WindController::getCurrent()
 void WindController::generateWind()
 {
    current= new Wind();
-   timeLeftToChange= (unsigned long)Timer::getInstance()->getActualTime() + rand() % 10 + 4;
+   timeLeftToChange= unsigned long(Timer::getInstance()->getActualTime() + rand() % 10 + 4);
 
    stringstream winds;
 

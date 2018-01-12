@@ -27,12 +27,12 @@ Airport::Airport()
 
 Airport::~Airport()
 {
-   for (int i= 0; i < 3; i++) {
+   for (auto i= 0; i < 3; i++) {
       delete airportRunways[i];
    }
 }
 
-bool Airport::airportAvailable()
+bool Airport::airportAvailable() const
 {
    return airportIsAvailable;
 }
@@ -42,7 +42,7 @@ AirportRunway * Airport::getAvailableRunway()
    enableRunwayWind();
    enableRunwayTime();
 
-   for (int i= 0; i < 3; i++) {
+   for (auto i= 0; i < 3; i++) {
       if (airportRunways[i]->isRunwayAvailable()) {
          airportIsAvailable= true;
          return airportRunways[i];
@@ -76,7 +76,7 @@ void Airport::enableRunwayWind() // if the winds are transversal
 
 void Airport::enableRunwayTime() // remaining time that the runway is blocked
 {
-   for (int i = 0; i < 3; i++) {
+   for (auto i = 0; i < 3; i++) {
       if (!Timer::getInstance()->getActualTime() >= airportRunways[i]->remainingTime())
          airportRunways[i]->changeRunwayState(false);
       else

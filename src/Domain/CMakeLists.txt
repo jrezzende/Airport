@@ -6,12 +6,13 @@ set(DOMAIN_SRC_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 set (
 	DOMAIN_SRCS
 	Airplane.cpp
-	AirplaneMain.cpp
 	Airport.cpp
 	AirportRunway.cpp
 	Directions.cpp
 	Wind.cpp
 	WindController.cpp
+	ControlTower.cpp
+	AirplaneController.cpp
 )
 
 set (
@@ -22,12 +23,15 @@ set (
 	Directions.h
 	Wind.h
 	WindController.h
+	ControlTower.h
+	AirplaneController.h
 )
 
-include_directories(${utilities})
+add_library(domain STATIC ${DOMAIN_SRCS} ${DOMAIN_HEADERS})
 
-add_executable(domain ${DOMAIN_HEADERS} ${DOMAIN_SRCS})
+include_directories(${utilities})
 
 target_include_directories(domain PUBLIC ${DOMAIN_SRC_DIR})
 
 target_link_libraries(domain utilities)
+target_link_libraries(domain model)
