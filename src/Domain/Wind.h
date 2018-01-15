@@ -3,11 +3,9 @@
 #define INCLUDED_WIND_H
 
 #include "Directions.h"
-#include "RandomGen.h"
 
 class Wind
 {
-private:
    Directions::Direction windDirection;
 
 public:

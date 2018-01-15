@@ -1,31 +1,36 @@
 #include "ControlTower.h"
+#include "Airplane.h"
 
-ControlTower::ControlTower(int maxPlanesLimit) : planesOnGround(0), departureCounter(0), arrivalCounter(0)
+ControlTower::ControlTower(const int maxPlanesLimit) : planesOnGround(0), arrivalCounter(0), departureCounter(0)
 {
    maxPlanesOnGround= maxPlanesLimit;
 }
 
-void ControlTower::newArrivalRequest(Airplane * airplane)
+void ControlTower::newArrivalRequest(Airplane& airplane)
 {
-   arrivalRequests.push_back(airplane);
+   arrivalRequests.push_back(&airplane);
 }
 
-void ControlTower::newDepartureRequest(Airplane * airplane)
+void ControlTower::newDepartureRequest(Airplane& airplane)
 {
-   departureRequests.push_back(airplane);
+   departureRequests.push_back(&airplane);
 }
 
-void ControlTower::requestTracker()
+bool ControlTower::arrivalRequestSent(Airplane& airplane)
 {
-
-}
-
-bool ControlTower::landRequestSent(Airplane * airplane)
-{
+   for (unsigned int i= 0; i < arrivalRequests.size(); i++) {
+      if (arrivalRequests.at(i) == &airplane)
+         return true;
+   }
    return false;
 }
 
-bool ControlTower::takeOffRequestSent(Airplane * airplane)
+
+bool ControlTower::departureRequestSent(Airplane& airplane)
 {
+   for(unsigned int i= 0; i < departureRequests.size(); i++) {
+      if (departureRequests.at(i) == &airplane)
+         return true;
+   }
    return false;
 }

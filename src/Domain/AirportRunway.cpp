@@ -4,22 +4,22 @@ AirportRunway::AirportRunway(const Directions::Direction vRunwayDirection) : run
 {
 }
 
-Directions::Direction AirportRunway::getRunwayDirection()
+Directions::Direction AirportRunway::getRunwayDirection() const
 {
    return runWayDirection;
 }
 
-void AirportRunway::changeRunwayState(bool flag)
+void AirportRunway::changeRunwayState(const bool flag)
 {
    isAvailable= flag;
 }
 
-bool AirportRunway::isRunwayAvailable()
+bool AirportRunway::isRunwayAvailable() const
 {
    return isAvailable;
 }
 
-int AirportRunway::remainingTime()
+int AirportRunway::remainingTime() const
 {
    return willBeAvailableIn;
 }

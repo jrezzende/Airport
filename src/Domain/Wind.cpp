@@ -1,4 +1,5 @@
 #include "Wind.h"
+#include "RandomGen.h"
 
 Wind::Wind()
 {

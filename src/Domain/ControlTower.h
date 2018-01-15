@@ -2,12 +2,12 @@
 #ifndef INCLUDED_CONTROLTOWER_H
 #define INCLUDED_CONTROLTOWER_H
 
-#include "Airplane.h"
 #include <deque>
+
+class Airplane;
 
 class ControlTower
 {
-private:
    int maxPlanesOnGround;
    int planesOnGround;
    int arrivalCounter;;
@@ -23,12 +23,12 @@ public:
    int getMaxPlanesOnGround() const { return maxPlanesOnGround; }
    void setMaxPlanesOnGround(const int value) { maxPlanesOnGround= value; }
    
-   void newArrivalRequest(Airplane* airplane);
-   void newDepartureRequest(Airplane* airplane);
+   void newArrivalRequest(Airplane& airplane);
+   void newDepartureRequest(Airplane& airplane);
    void requestTracker();
 
-   bool landRequestSent(Airplane* airplane);
-   bool takeOffRequestSent(Airplane* airplane);
+   bool arrivalRequestSent(Airplane& airplane);
+   bool departureRequestSent(Airplane& airplane);
 
    int getArrivalCounter() const { return arrivalCounter; }
    int getDepartureCounter() const { return departureCounter; }

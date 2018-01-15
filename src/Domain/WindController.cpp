@@ -1,12 +1,12 @@
 #include "WindController.h"
 #include <sstream>
 
-WindController::WindController()
+WindController::WindController() : current(nullptr), timeLeftToChange(0)
 {
    generateWind();
 }
 
-Wind * WindController::getCurrent()
+Wind * WindController::getCurrent() const
 {
    return current;
 }
@@ -22,7 +22,7 @@ void WindController::generateWind()
    nextWinds.push_back(winds.str());
 }
 
-vector<string> WindController::getWindsVector()
+vector<string> WindController::getWindsVector() const
 {
    return nextWinds;
 }

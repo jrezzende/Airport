@@ -12,7 +12,6 @@ using namespace std;
 
 class WindController
 {
-private:
    Wind* current;
    unsigned long timeLeftToChange;
    vector<string> nextWinds;
@@ -21,10 +20,10 @@ public:
    WindController();
    ~WindController() = default;
 
-   Wind* getCurrent();
+   Wind* getCurrent() const;
    void generateWind();
 
-   vector<string> getWindsVector();
+   vector<string> getWindsVector() const;
 };
 
-#endif // !1
+#endif // INCLUDED_WINDGENERATOR_H

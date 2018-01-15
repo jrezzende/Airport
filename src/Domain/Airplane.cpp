@@ -1,6 +1,5 @@
 #include "Airplane.h"
 #include "Timer.h"
-#include <sstream>
 #include <fstream>
 
 Airplane::Airplane(const unsigned long timeForArrival) : passengers(), name(""), airline(""), departureTime(0), landingTime(0)
@@ -45,14 +44,14 @@ void Airplane::setAirline(int const num)
 void Airplane::generateRandomName()
 {
    std::ifstream in("C:/Users/joao.mathias/source/repos/Airport/src/Domain/planes.txt");
-   
-   auto airlineCounter= 0;
-   const auto limit= RandomGen::generateRandom(1, 38);
    std::string s;
 
+   auto airlineCounter= 0;
+   const auto limit= RandomGen::generateRandom(1, 38);
+  
    for (auto i= 0; i <= limit; i++) {
       getline(in, s);
-      if (s == "-") {
+       if (s == "-") {
          getline(in, s);
          airlineCounter++;
       }

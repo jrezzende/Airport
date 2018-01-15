@@ -8,10 +8,9 @@
 
 class Airplane
 {
-private:
-   int passengers;
    std::string name;
    std::string airline;
+   int passengers;
    long arrivalTime;
    long departureTime;
    long landingTime;

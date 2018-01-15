@@ -1,4 +1,5 @@
 #include "Timer.h"
+#include "windows.h"
 
 Timer::Timer()
 {
@@ -23,7 +24,7 @@ unsigned long Timer::getTime()
 
 void Timer::aSec(const unsigned long elapsed)
 {
-   _sleep(1000 - elapsed);
+   Sleep(1000 - elapsed);
 }
 
 void Timer::startTime()

@@ -3,6 +3,7 @@
 #include "AirportRunway.h"
 #include "WindController.h"
 #include "Timer.h"
+#include "ControlTower.h"
 
 Airport * Airport::instance= nullptr;
 
@@ -21,6 +22,8 @@ Airport::Airport()
    airportRunways[0] = new AirportRunway(Directions::NORTH_SOUTH);
    airportRunways[1] = new AirportRunway(Directions::EAST_WEST);
    airportRunways[2] = new AirportRunway(Directions::NORTHEAST_SOUTHWEST);
+
+   controlTower= new ControlTower(50); // test purposes only, maximum planes value comes from app
 
    airportIsAvailable= true;
 }
@@ -74,7 +77,7 @@ void Airport::enableRunwayWind() // if the winds are transversal
       airportRunways[2]->changeRunwayState(true);
 }
 
-void Airport::enableRunwayTime() // remaining time that the runway is blocked
+void Airport::enableRunwayTime()
 {
    for (auto i = 0; i < 3; i++) {
       if (!Timer::getInstance()->getActualTime() >= airportRunways[i]->remainingTime())

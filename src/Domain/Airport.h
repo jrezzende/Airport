@@ -2,17 +2,15 @@
 #ifndef INCLUDED_AIRPORT_H
 #define INCLUDED_AIRPORT_H
 
-#include "ControlTower.h"
-
 #include <string>
 
+class ControlTower;
 class AirportRunway;
 class Airplane;
 class Wind;
 
 class Airport
 {
-private:
    static Airport* instance;
    AirportRunway* airportRunways[3];
    ControlTower* controlTower;

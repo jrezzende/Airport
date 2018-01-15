@@ -14,10 +14,9 @@
 void main()
 {
    auto* model= Model::getInstance();
-   Airplane* airplane1= new Airplane(20);
-   Airplane* airplane2= new Airplane(25);
-   Airplane* airplane3= new Airplane(15);
-
+   auto* airplane1= new Airplane(20);
+   auto* airplane2= new Airplane(25);
+   auto* airplane3= new Airplane(15);
 }
 
 #endif // INCLUDED_AIRPORTMAIN_H

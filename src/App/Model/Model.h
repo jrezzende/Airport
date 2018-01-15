@@ -3,22 +3,23 @@
 #define INCLUDED_MODEL_H
 
 #include "Airport.h"
-#include "AirplaneController.h"
+//#include "AirplaneController.h" weird bug
 #include "WindController.h"
+
+class AirplaneController;
 
 class Model
 {
-private:
    Model();
    static Model* model;
 public:
-   Airport* airport;
-   WindController* windController;
    AirplaneController* airplaneController;
+   WindController* windController;
+   Airport* airport;
 
    static Model* getInstance();
 
-   void launchModel();
+   static void launchModel();
 };
 
 #endif // INCLUDED_MODEL_H
