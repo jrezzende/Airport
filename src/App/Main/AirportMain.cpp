@@ -10,13 +10,18 @@
 #include "ControlTower.h"
 #include "Directions.h"
 #include "Model.h"
+#include "UI.h"
+
+#include <iostream>
 
 void main()
 {
-   auto* model= Model::getInstance();
-   auto* airplane1= new Airplane(20);
-   auto* airplane2= new Airplane(25);
-   auto* airplane3= new Airplane(15);
+   UI::airportLimitOption();
+   std::cout << endl;
+   UI::getFirstOption();
+   std::cout << endl;
+   UI::getSecondOption();
+   std::cout << endl;
 }
 
 #endif // INCLUDED_AIRPORTMAIN_H

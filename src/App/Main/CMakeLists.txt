@@ -17,6 +17,6 @@ AirportMain.cpp
 add_executable(main ${MAIN_HEADERS} ${MAIN_SRCS})
 
 target_include_directories(main
-	PUBLIC ${MAIN_SRC_DIR} ${LIST_SRC_DIR})
+	PUBLIC ${MAIN_SRC_DIR})
 	
 target_link_libraries(main domain view controller model)

@@ -1,9 +1,11 @@
 #include "WindController.h"
 #include <sstream>
+#include <iostream>
 
 WindController::WindController() : current(nullptr), timeLeftToChange(0)
 {
    generateWind();
+   //std::cout << "Current wind: " << getCurrent()->getWindDirection() << endl;
 }
 
 Wind * WindController::getCurrent() const

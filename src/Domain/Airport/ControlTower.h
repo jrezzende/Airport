@@ -25,7 +25,6 @@ public:
    
    void newArrivalRequest(Airplane& airplane);
    void newDepartureRequest(Airplane& airplane);
-   void requestTracker();
 
    bool arrivalRequestSent(Airplane& airplane);
    bool departureRequestSent(Airplane& airplane);

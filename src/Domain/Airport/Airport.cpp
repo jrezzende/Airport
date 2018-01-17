@@ -4,6 +4,7 @@
 #include "WindController.h"
 #include "Timer.h"
 #include "ControlTower.h"
+#include <iostream>
 
 Airport * Airport::instance= nullptr;
 
@@ -26,6 +27,8 @@ Airport::Airport()
    controlTower= new ControlTower(50); // test purposes only, maximum planes value comes from app
 
    airportIsAvailable= true;
+
+   std::cout << "Airport name: " << getAirportName() << endl;
 }
 
 Airport::~Airport()

@@ -25,7 +25,6 @@ bool ControlTower::arrivalRequestSent(Airplane& airplane)
    return false;
 }
 
-
 bool ControlTower::departureRequestSent(Airplane& airplane)
 {
    for(unsigned int i= 0; i < departureRequests.size(); i++) {

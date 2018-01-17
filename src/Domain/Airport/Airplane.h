@@ -21,13 +21,15 @@ public:
 
    void setTotalPassengers() { passengers= RandomGen::generateRandom(50, 150); }
    int getTotalPassengers() const { return passengers; }
+   void setName(const std::string &newValue) { name= newValue; }
    std::string getName() const { return name; }
+   void setAirline(int num);
+   std::string getAirline() const { return airline; }
    long getArrivalTime() const { return arrivalTime; }
    long getDepartureTime() const { return departureTime; }
    void setDepartureTime(const unsigned long timeForDeparture);
    long getLandingTime() const { return landingTime; }
-   void setName(const std::string &newValue) { name= newValue; }
-   void setAirline(int num);
+   
    void generateRandomName();
 };
 

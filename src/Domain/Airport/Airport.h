@@ -25,6 +25,7 @@ public:
    static Airport* getInstance();
    ControlTower* getControlTower() const { return controlTower; }
 
+   std::string getAirportName() const { return airportName; }
    AirportRunway* getAvailableRunway();
    void enableRunwayWind(); 
    void enableRunwayTime(); 

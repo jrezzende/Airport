@@ -1,5 +1,6 @@
 #include "Airplane.h"
 #include "Timer.h"
+#include <iostream>
 #include <fstream>
 
 Airplane::Airplane(const unsigned long timeForArrival) : passengers(), name(""), airline(""), departureTime(0), landingTime(0)
@@ -7,6 +8,8 @@ Airplane::Airplane(const unsigned long timeForArrival) : passengers(), name(""),
    generateRandomName();
    setTotalPassengers();
    arrivalTime=  timeForArrival + rand() % 4 + 1;
+   std::cout << "Airplane name: " << getName() << endl;
+   std::cout << "Airplane airline: " << getAirline() << "\n" << endl;
 }
 
 void Airplane::setDepartureTime(const unsigned long timeForDeparture)
