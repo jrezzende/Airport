@@ -2,6 +2,7 @@
 #include "Directions.h"
 #include "AirportRunway.h"
 #include "WindController.h"
+#include "Model.h"
 #include "Timer.h"
 #include "ControlTower.h"
 #include <iostream>
@@ -58,11 +59,9 @@ AirportRunway * Airport::getAvailableRunway()
    return nullptr;
 }
 
-WindController wcontrol; // must be changed later, when model is created *TEST PURPOSES ONLY*
-
 void Airport::enableRunwayWind() // if the winds are transversal
 {
-   Wind* wind= wcontrol.getCurrent();
+   Wind* wind= Model::getInstance()->getWindController()->getCurrent();
 
    if (wind->getWindDirection() != Directions::NORTH_SOUTH && wind->getWindDirection() != Directions::SOUTH_NORTH)
       airportRunways[0]->changeRunwayState(false);

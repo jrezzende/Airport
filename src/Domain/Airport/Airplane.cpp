@@ -46,7 +46,7 @@ void Airplane::setAirline(int const num)
 
 void Airplane::generateRandomName()
 {
-   std::ifstream in("C:/Users/joao.mathias/source/repos/Airport/src/Domain/planes.txt");
+   std::ifstream in("C:/Users/joao.mathias/source/repos/Airport/src/Domain/Airport/planes.txt");
    std::string s;
 
    auto airlineCounter= 0;

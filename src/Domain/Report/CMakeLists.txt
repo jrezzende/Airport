@@ -3,13 +3,33 @@ project(report CXX)
 
 set(REPORT_SRC_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 
-#set (
-#	REPORT_SRCS
-#)
+set (
+	REPORT_SRCS
+	EventAirplaneArrival.cpp
+	EventAirplaneArrivalRequest.cpp
+	EventAirplaneCapacityExcess.cpp
+	EventAirplaneDeparture.cpp
+	EventAirplaneDepartureRequest.cpp
+	EventAirplaneDepartureRequestExcess.cpp
+	EventAirplaneOnHoldExcess.cpp
+	EventAirplaneToAnotherAirport.cpp
+	EventRunwayNowFree.cpp
+	EventWindShift.cpp
+)
 
 set (
 	REPORT_HEADERS
-	LogPersistance.h
+	Events.h
+	EventAirplaneArrival.h
+	EventAirplaneArrivalRequest.h
+	EventAirplaneCapacityExcess.h
+	EventAirplaneDeparture.h
+	EventAirplaneDepartureRequest.h
+	EventAirplaneDepartureRequestExcess.h
+	EventAirplaneOnHoldExcess.h
+	EventAirplaneToAnotherAirport.h
+	EventRunwayNowFree.h
+	EventWindShift.h
 )
 
 add_library(report STATIC ${REPORT_SRCS} ${REPORT_HEADERS})

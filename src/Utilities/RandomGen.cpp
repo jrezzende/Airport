@@ -1,4 +1,5 @@
 #include "RandomGen.h"
+#include <random>
 
 int RandomGen::generateRandom(const int outset, const int end)
 {

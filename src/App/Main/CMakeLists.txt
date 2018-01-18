@@ -19,4 +19,4 @@ add_executable(main ${MAIN_HEADERS} ${MAIN_SRCS})
 target_include_directories(main
 	PUBLIC ${MAIN_SRC_DIR})
 	
-target_link_libraries(main domain view controller model)
+target_link_libraries(main domain view controller model report utilities)
