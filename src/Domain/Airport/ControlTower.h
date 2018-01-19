@@ -23,8 +23,8 @@ public:
    int getMaxPlanesOnGround() const { return maxPlanesOnGround; }
    void setMaxPlanesOnGround(const int value) { maxPlanesOnGround= value; }
    
-   void newArrivalRequest(Airplane& airplane);
-   void newDepartureRequest(Airplane& airplane);
+   void newArrivalRequest(Airplane* airplane);
+   void newDepartureRequest(Airplane* airplane);
 
    bool arrivalRequestSent(Airplane& airplane);
    bool departureRequestSent(Airplane& airplane);

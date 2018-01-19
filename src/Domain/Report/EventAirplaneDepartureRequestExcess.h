@@ -10,6 +10,7 @@ class EventAirplaneDepartureRequestExcess : public Events
   ~EventAirplaneDepartureRequestExcess() = default;
    time_t getEventTime() override;
    std::string eventDescription() override;
+   EventType getEventType() const override;
 };
 
 

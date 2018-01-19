@@ -1,4 +1,5 @@
 #include "EventAirplaneArrival.h"
+#include "EventAirplaneToAnotherAirport.h"
 #ifndef INCLUDED_AIRPORTMAIN_H
 #define INCLUDED_AIRPORTMAIN_H
 
@@ -22,7 +23,7 @@ void main()
 {
    auto model= Model::getInstance();
    auto* airplane1= new Airplane(10);
-   EventAirplaneArrival* eventtest= new EventAirplaneArrival(Timer::getInstance()->getActualTime(), airplane1->getName(), airplane1->getAirline(), airplane1->getTotalPassengers());
+   EventAirplaneToAnotherAirport* eventTest= new EventAirplaneToAnotherAirport(Timer::getInstance()->getActualTime(), airplane1->getName(), airplane1->getAirline());
 }
 
 #endif // INCLUDED_AIRPORTMAIN_H

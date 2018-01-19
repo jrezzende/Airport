@@ -5,15 +5,28 @@
 #include "Timer.h"
 #include <sstream>
 
+enum EventType
+{
+   ARRIVAL,
+   ARRIVALREQUEST,
+   DEPARTURE,
+   DEPARTURE_REQUEST,
+   CRITICAL_SITUATION,
+   RUNWAY_NOW_FREE,
+   WIND_SHIFT
+};
+
 class Events
 {
 protected:
    time_t eventTime;
+   EventType eventType;
 public:
-   Events(time_t eventTimeValue) { eventTime= eventTimeValue; }
+   Events(const time_t eventTimeValue, const EventType eventTypeValue) { eventTime= eventTimeValue; eventType= eventTypeValue; }
    ~Events() = default;
    virtual std::string eventDescription() = 0;
    virtual time_t getEventTime() = 0;
+   virtual EventType getEventType() const = 0;
 };
 
 #endif //INCLUDED_LOG_H

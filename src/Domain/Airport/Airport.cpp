@@ -7,9 +7,9 @@
 #include "ControlTower.h"
 #include <iostream>
 
-Airport * Airport::instance= nullptr;
+Airport* Airport::instance= nullptr;
 
-Airport * Airport::getInstance()
+Airport* Airport::getInstance()
 {
    if (!instance)
       instance= new Airport();
@@ -34,9 +34,8 @@ Airport::Airport()
 
 Airport::~Airport()
 {
-   for (auto i= 0; i < 3; i++) {
-      delete airportRunways[i];
-   }
+   for (auto& airportRunway : airportRunways)
+      delete airportRunway;
 }
 
 bool Airport::airportAvailable() const
@@ -44,22 +43,22 @@ bool Airport::airportAvailable() const
    return airportIsAvailable;
 }
 
-AirportRunway * Airport::getAvailableRunway()
+AirportRunway* Airport::getAvailableRunway()
 {
    enableRunwayWind();
    enableRunwayTime();
 
-   for (auto i= 0; i < 3; i++) {
-      if (airportRunways[i]->isRunwayAvailable()) {
+   for (auto& airportRunway : airportRunways) {
+      if (airportRunway->isRunwayAvailable()) {
          airportIsAvailable= true;
-         return airportRunways[i];
+         return airportRunway;
       }
    }
    airportIsAvailable= false;
    return nullptr;
 }
 
-void Airport::enableRunwayWind() // if the winds are transversal
+void Airport::enableRunwayWind() // change to &
 {
    Wind* wind= Model::getInstance()->getWindController()->getCurrent();
 
@@ -81,11 +80,11 @@ void Airport::enableRunwayWind() // if the winds are transversal
 
 void Airport::enableRunwayTime()
 {
-   for (auto i = 0; i < 3; i++) {
-      if (!Timer::getInstance()->getActualTime() >= airportRunways[i]->remainingTime())
-         airportRunways[i]->changeRunwayState(false);
+   for (auto& airportRunway : airportRunways) {
+      if (!Timer::getInstance()->getActualTime() >= airportRunway->remainingTime())
+         airportRunway->changeRunwayState(false);
       else
-         airportRunways[i]->changeRunwayState(true);
+         airportRunway->changeRunwayState(true);
    }
 }
 

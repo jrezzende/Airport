@@ -15,11 +15,20 @@ set (
 	EventAirplaneToAnotherAirport.cpp
 	EventRunwayNowFree.cpp
 	EventWindShift.cpp
+	ReportCriticalSituations.cpp
+	ReportLandedSoFar.cpp
+	ReportPlanesOnGround.cpp
+	ReportPlanesOnHold.cpp
+	ReportTotalPassengers.cpp
+	ReportWindShift.cpp
+	LogEvents.cpp
 )
 
 set (
 	REPORT_HEADERS
 	Events.h
+	LogEvents.h
+	Reports.h
 	EventAirplaneArrival.h
 	EventAirplaneArrivalRequest.h
 	EventAirplaneCapacityExcess.h
@@ -30,6 +39,12 @@ set (
 	EventAirplaneToAnotherAirport.h
 	EventRunwayNowFree.h
 	EventWindShift.h
+	ReportCriticalSituations.h
+	ReportLandedSoFar.h
+	ReportPlanesOnGround.h
+	ReportPlanesOnHold.h
+	ReportTotalPassengers.h
+	ReportWindShift.h
 )
 
 add_library(report STATIC ${REPORT_SRCS} ${REPORT_HEADERS})

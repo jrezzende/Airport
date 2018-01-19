@@ -14,6 +14,7 @@ public:
   ~EventAirplaneArrival() = default;
    time_t getEventTime() override;
    std::string eventDescription() override;
+   EventType getEventType() const override;
 };
 
 #endif //INCLUDED_EVENTAIRPLANEARRIVAL_H

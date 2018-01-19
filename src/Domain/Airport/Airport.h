@@ -17,15 +17,15 @@ class Airport
 
    Airport();
 
-   std::string airportName= "Aeroporto Internacional Hercílio Luz";
+   std::string airportName= "Aeroporto Internacional Hercilio Luz";
    bool airportIsAvailable;
 
 public:
    ~Airport();
    static Airport* getInstance();
-   ControlTower* getControlTower() const { return controlTower; }
+   ControlTower& getControlTower() const { return *controlTower; }
 
-   std::string getAirportName() const { return airportName; }
+   const std::string& getAirportName() const { return airportName; }
    AirportRunway* getAvailableRunway();
    void enableRunwayWind(); 
    void enableRunwayTime(); 

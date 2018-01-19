@@ -1,6 +1,6 @@
 #include "EventAirplaneCapacityExcess.h"
 
-EventAirplaneCapacityExcess::EventAirplaneCapacityExcess(time_t eventTimeValue) : Events(eventTimeValue)
+EventAirplaneCapacityExcess::EventAirplaneCapacityExcess(time_t eventTimeValue) : Events(eventTimeValue, CRITICAL_SITUATION)
 {
 }
 
@@ -16,4 +16,9 @@ std::string EventAirplaneCapacityExcess::eventDescription()
    aux << "Current number of planes on ground is higher than 70% of its total capacity.\n";
 
    return aux.str();
+}
+
+EventType EventAirplaneCapacityExcess::getEventType() const
+{
+   return eventType;
 }

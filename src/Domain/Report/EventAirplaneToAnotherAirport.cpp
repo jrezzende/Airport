@@ -1,10 +1,12 @@
 #include "EventAirplaneToAnotherAirport.h"
 #include "RandomGen.h"
+#include <iostream>
 
-EventAirplaneToAnotherAirport::EventAirplaneToAnotherAirport(time_t eventTimeValue, std::string vAirplaneName, std::string vAirplaneAirline) : Events(eventTimeValue)
+EventAirplaneToAnotherAirport::EventAirplaneToAnotherAirport(time_t eventTimeValue, std::string vAirplaneName, std::string vAirplaneAirline) : Events(eventTimeValue, CRITICAL_SITUATION)
 {
    airplaneName= vAirplaneName;
    airplaneAirline= vAirplaneAirline;
+   std::cout << eventDescription();
 }
 
 time_t EventAirplaneToAnotherAirport::getEventTime()
@@ -30,4 +32,9 @@ std::string EventAirplaneToAnotherAirport::eventDescription()
 
    return aux.str();
 
+}
+
+EventType EventAirplaneToAnotherAirport::getEventType() const
+{
+   return eventType;
 }

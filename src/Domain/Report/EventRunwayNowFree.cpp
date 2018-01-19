@@ -1,6 +1,6 @@
 #include "EventRunwayNowFree.h"
 
-EventRunwayNowFree::EventRunwayNowFree(time_t eventTimeValue, Directions::Direction newFreeRunway) : Events(eventTimeValue)
+EventRunwayNowFree::EventRunwayNowFree(time_t eventTimeValue, Directions::Direction newFreeRunway) : Events(eventTimeValue, RUNWAY_NOW_FREE)
 {
    runwayFree= newFreeRunway;
 }
@@ -17,4 +17,9 @@ std::string EventRunwayNowFree::eventDescription()
    aux << "Runway " << Directions::toString(runwayFree) << " is now available again.\n";
 
    return aux.str();
+}
+
+EventType EventRunwayNowFree::getEventType() const
+{
+   return eventType;
 }

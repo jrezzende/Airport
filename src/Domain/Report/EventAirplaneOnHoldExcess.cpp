@@ -1,6 +1,6 @@
 #include "EventAirplaneOnHoldExcess.h"
 
-EventAirplaneOnHoldExcess::EventAirplaneOnHoldExcess(time_t eventTimeValue) : Events(eventTimeValue)
+EventAirplaneOnHoldExcess::EventAirplaneOnHoldExcess(time_t eventTimeValue) : Events(eventTimeValue, CRITICAL_SITUATION)
 {
 }
 
@@ -16,4 +16,9 @@ std::string EventAirplaneOnHoldExcess::eventDescription()
    aux << "Number of airplanes on hold is currently higher than 5.\n";
 
    return aux.str();
+}
+
+EventType EventAirplaneOnHoldExcess::getEventType() const
+{
+   return eventType; eventType;
 }

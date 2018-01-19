@@ -6,14 +6,16 @@ ControlTower::ControlTower(const int maxPlanesLimit) : planesOnGround(0), arriva
    maxPlanesOnGround= maxPlanesLimit;
 }
 
-void ControlTower::newArrivalRequest(Airplane& airplane)
+void ControlTower::newArrivalRequest(Airplane* airplane)
 {
-   arrivalRequests.push_back(&airplane);
+   arrivalRequests.push_back(airplane);
+   arrivalCounter+= airplane->getTotalPassengers();
 }
 
-void ControlTower::newDepartureRequest(Airplane& airplane)
+void ControlTower::newDepartureRequest(Airplane* airplane)
 {
-   departureRequests.push_back(&airplane);
+   departureRequests.push_back(airplane);
+   departureCounter+= airplane->getTotalPassengers();
 }
 
 bool ControlTower::arrivalRequestSent(Airplane& airplane)

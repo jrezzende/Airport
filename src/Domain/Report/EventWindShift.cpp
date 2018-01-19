@@ -1,6 +1,6 @@
 #include "EventWindShift.h"
 
-EventWindShift::EventWindShift(time_t eventTimeValue, Directions::Direction newWindValue) : Events(eventTimeValue)
+EventWindShift::EventWindShift(time_t eventTimeValue, Directions::Direction newWindValue) : Events(eventTimeValue, WIND_SHIFT)
 {
    newDir= newWindValue;
 }
@@ -17,4 +17,9 @@ std::string EventWindShift::eventDescription()
    aux << "Wind direction changed to " << Directions::toString(newDir);
 
    return aux.str();
+}
+
+EventType EventWindShift::getEventType() const
+{
+   return eventType;
 }

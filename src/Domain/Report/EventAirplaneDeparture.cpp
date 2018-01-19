@@ -1,6 +1,6 @@
 #include "EventAirplaneDeparture.h"
 
-EventAirplaneDeparture::EventAirplaneDeparture(time_t eventTimeValue, std::string vAirplaneName, std::string vAirplaneAirline, int vPassengers) : Events(eventTimeValue)
+EventAirplaneDeparture::EventAirplaneDeparture(time_t eventTimeValue, std::string vAirplaneName, std::string vAirplaneAirline, int vPassengers) : Events(eventTimeValue, DEPARTURE)
 {
    airplaneName= vAirplaneName;
    airplaneAirline= vAirplaneAirline;
@@ -19,4 +19,9 @@ std::string EventAirplaneDeparture::eventDescription()
    aux << airplaneName << " from the airline " << airplaneAirline << " has departed from the airport carrying " << numberOfPassengers << " passengers.\n";
 
    return aux.str();
+}
+
+EventType EventAirplaneDeparture::getEventType() const
+{
+   return eventType;
 }

@@ -1,7 +1,6 @@
 #include "EventAirplaneArrivalRequest.h"
-#include <mmeapi.h>
 
-EventAirplaneArrivalRequest::EventAirplaneArrivalRequest(time_t eventTimeValue, std::string vAirplaneName, std::string vAirplaneAirline) : Events(eventTimeValue)
+EventAirplaneArrivalRequest::EventAirplaneArrivalRequest(time_t eventTimeValue, std::string vAirplaneName, std::string vAirplaneAirline) : Events(eventTimeValue, ARRIVALREQUEST)
 {
    airplaneName= vAirplaneName;
    airplaneAirline= vAirplaneAirline;
@@ -18,4 +17,9 @@ std::string EventAirplaneArrivalRequest::eventDescription()
    aux << airplaneName << " from the airline " << airplaneAirline << " is requesting a runway to arrive.\n";
 
    return aux.str();
+}
+
+EventType EventAirplaneArrivalRequest::getEventType() const
+{
+   return eventType;
 }

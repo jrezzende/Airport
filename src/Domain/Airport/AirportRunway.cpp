@@ -1,6 +1,8 @@
 #include "AirportRunway.h"
 
-AirportRunway::AirportRunway(const Directions::Direction vRunwayDirection) : runWayDirection(vRunwayDirection), isAvailable(true), willBeAvailableIn(0)
+AirportRunway::AirportRunway(
+   const Directions::Direction vRunwayDirection
+) : runWayDirection(vRunwayDirection), isAvailable(true), willBeAvailableIn(0)
 {
 }
 
