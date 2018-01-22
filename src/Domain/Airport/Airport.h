@@ -29,6 +29,8 @@ public:
    AirportRunway* getAvailableRunway();
    void enableRunwayWind(); 
    void enableRunwayTime(); 
+   void requestTracker();
+
    bool airportAvailable() const;
 };
 

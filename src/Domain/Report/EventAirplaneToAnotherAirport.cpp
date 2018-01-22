@@ -2,11 +2,10 @@
 #include "RandomGen.h"
 #include <iostream>
 
-EventAirplaneToAnotherAirport::EventAirplaneToAnotherAirport(time_t eventTimeValue, std::string vAirplaneName, std::string vAirplaneAirline) : Events(eventTimeValue, CRITICAL_SITUATION)
+EventAirplaneToAnotherAirport::EventAirplaneToAnotherAirport(std::string vAirplaneName, std::string vAirplaneAirline) : Events(CRITICAL_SITUATION)
 {
    airplaneName= vAirplaneName;
    airplaneAirline= vAirplaneAirline;
-   std::cout << eventDescription();
 }
 
 time_t EventAirplaneToAnotherAirport::getEventTime()
@@ -28,7 +27,7 @@ std::string EventAirplaneToAnotherAirport::eventDescription()
    default: destinationAirport= "";
    }
 
-   aux << airplaneName << " from the airline " << airplaneAirline << " was sent to " << destinationAirport << " due to capacity issues.\n";
+   aux << airplaneName << " from the airline " << airplaneAirline << " was sent to " << destinationAirport << " due to capacity issues, at: " << Timer::getInstance()->getFormattedTime() << "\n.";
 
    return aux.str();
 

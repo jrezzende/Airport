@@ -1,6 +1,6 @@
 #include "EventAirplaneOnHoldExcess.h"
 
-EventAirplaneOnHoldExcess::EventAirplaneOnHoldExcess(time_t eventTimeValue) : Events(eventTimeValue, CRITICAL_SITUATION)
+EventAirplaneOnHoldExcess::EventAirplaneOnHoldExcess() : Events(CRITICAL_SITUATION)
 {
 }
 
@@ -13,12 +13,12 @@ std::string EventAirplaneOnHoldExcess::eventDescription()
 {
    std::stringstream aux;
 
-   aux << "Number of airplanes on hold is currently higher than 5.\n";
+   aux << "At: " << Timer::getInstance()->getFormattedTime() << " the number of airplanes on hold is higher than 5.\n";
 
    return aux.str();
 }
 
 EventType EventAirplaneOnHoldExcess::getEventType() const
 {
-   return eventType; eventType;
+   return eventType;
 }

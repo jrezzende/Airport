@@ -18,11 +18,12 @@ public:
    Airport* airport;
 
    static Model* getInstance();
-   WindController* getWindController() const { return windController; }
-   AirplaneController* getAirplaneController() const { return airplaneController;}
-   Airport* getAirport() const { return airport; }
+   WindController& getWindController() const { return *windController; }
+   AirplaneController& getAirplaneController() const { return *airplaneController;}
+   Airport& getAirport() const { return *airport; }
 
    static void launchModel();
+   void modelRequestTracker();
 };
 
 #endif // INCLUDED_MODEL_H

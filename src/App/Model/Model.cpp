@@ -22,3 +22,10 @@ void Model::launchModel()
 {
    Timer::getInstance()->startTime();
 }
+
+void Model::modelRequestTracker()
+{
+   airplaneController->trackRequests();
+   windController->requestTracker();
+   airport->requestTracker();
+}

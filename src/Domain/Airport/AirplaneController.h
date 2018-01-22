@@ -21,6 +21,7 @@ public:
 
    void arrivalRequest(Airplane& airplane);
    void departureRequest(Airplane& airplane);
+   void requestTracker();
 
    void eraseAirplane(Airplane& airplane);
    static void totalPassengers(Airplane& airplane);

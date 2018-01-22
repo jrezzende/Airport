@@ -23,7 +23,7 @@ void main()
 {
    auto model= Model::getInstance();
    auto* airplane1= new Airplane(10);
-   EventAirplaneToAnotherAirport* eventTest= new EventAirplaneToAnotherAirport(Timer::getInstance()->getActualTime(), airplane1->getName(), airplane1->getAirline());
+   EventAirplaneToAnotherAirport* eventTest= new EventAirplaneToAnotherAirport(airplane1->getName(), airplane1->getAirline());
 }
 
 #endif // INCLUDED_AIRPORTMAIN_H

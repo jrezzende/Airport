@@ -13,7 +13,7 @@ class Airplane
    int passengers;
    long arrivalTime;
    long departureTime;
-   long landingTime;
+   long timeToArrive;
 
 public:
    Airplane(const unsigned long timeForArrival);
@@ -26,9 +26,10 @@ public:
    void setAirline(int num);
    std::string getAirline() const { return airline; }
    long getArrivalTime() const { return arrivalTime; }
+   void setArrivalTime(const unsigned long timeForArrival) { arrivalTime= timeForArrival; }
    long getDepartureTime() const { return departureTime; }
-   void setDepartureTime(const unsigned long timeForDeparture);
-   long getLandingTime() const { return landingTime; }
+   void setDepartureTime(unsigned long timeForDeparture);
+   void incrementArrival() { timeToArrive++; }
    
    void generateRandomName();
 };

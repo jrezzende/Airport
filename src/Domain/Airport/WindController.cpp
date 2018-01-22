@@ -1,11 +1,17 @@
 #include "WindController.h"
+#include "Timer.h"
 #include <sstream>
 #include <iostream>
+#include "EventWindShift.h"
+#include "LogEvents.h"
 
-WindController::WindController() : current(nullptr), timeLeftToChange(0)
+WindController::WindController()
 {
-   generateWind();
-   //std::cout << "Current wind: " << getCurrent()->getWindDirection() << endl;
+   current= new Wind();
+   timeLeftToChange= unsigned long(Timer::getInstance()->getActualTime() + rand() % 10 + 4);
+
+   auto* event= new EventWindShift(current->getWindDirection());
+   LogEvents::getInstance()->newEvent(*event);
 }
 
 Wind * WindController::getCurrent() const
@@ -13,7 +19,7 @@ Wind * WindController::getCurrent() const
    return current;
 }
 
-void WindController::generateWind()
+void WindController::generateRandomWind()
 {
    current= new Wind();
    timeLeftToChange= unsigned long(Timer::getInstance()->getActualTime() + rand() % 10 + 4);
@@ -24,7 +30,18 @@ void WindController::generateWind()
    nextWinds.push_back(winds.str());
 }
 
+void WindController::requestTracker()
+{
+   if(unsigned long(Timer::getInstance()->getActualTime() >= timeLeftToChange)) {
+      generateRandomWind();
+
+      auto* event= new EventWindShift(current->getWindDirection());
+      LogEvents::getInstance()->newEvent(*event);
+   }
+}
+
 vector<string> WindController::getWindsVector() const
 {
    return nextWinds;
 }
+

@@ -58,9 +58,9 @@ AirportRunway* Airport::getAvailableRunway()
    return nullptr;
 }
 
-void Airport::enableRunwayWind() // change to &
+void Airport::enableRunwayWind()
 {
-   Wind* wind= Model::getInstance()->getWindController()->getCurrent();
+   Wind* wind= Model::getInstance()->getWindController().getCurrent();
 
    if (wind->getWindDirection() != Directions::NORTH_SOUTH && wind->getWindDirection() != Directions::SOUTH_NORTH)
       airportRunways[0]->changeRunwayState(false);
@@ -86,6 +86,14 @@ void Airport::enableRunwayTime()
       else
          airportRunway->changeRunwayState(true);
    }
+}
+
+void Airport::requestTracker()
+{
+   enableRunwayTime();
+   enableRunwayWind();
+
+   controlTower->requestTracker();
 }
 
 

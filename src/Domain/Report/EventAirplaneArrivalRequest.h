@@ -9,11 +9,12 @@ class EventAirplaneArrivalRequest : public Events
    std::string airplaneName;
    std::string airplaneAirline;
 public:
-   EventAirplaneArrivalRequest(time_t eventTimeValue, std::string vAirplaneName, std::string vAirplaneAirline);
+   EventAirplaneArrivalRequest(std::string vAirplaneName, std::string vAirplaneAirline);
   ~EventAirplaneArrivalRequest() = default;
    time_t getEventTime() override;
    std::string eventDescription() override;
    EventType getEventType() const override;
+   void setEventTime(const time_t time) override { eventTime= time; }
 };
 
 #endif //INCLUDED_EVENTAIRPLANEREQUEST_H

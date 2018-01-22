@@ -19,14 +19,15 @@ enum EventType
 class Events
 {
 protected:
-   time_t eventTime;
    EventType eventType;
+   time_t eventTime;
 public:
-   Events(const time_t eventTimeValue, const EventType eventTypeValue) { eventTime= eventTimeValue; eventType= eventTypeValue; }
+   Events(const EventType eventTypeValue) { eventTime= Timer::getInstance()->getActualTime(); eventType= eventTypeValue; }
    ~Events() = default;
    virtual std::string eventDescription() = 0;
    virtual time_t getEventTime() = 0;
    virtual EventType getEventType() const = 0;
+   virtual void setEventTime(const time_t time) = 0;
 };
 
 #endif //INCLUDED_LOG_H

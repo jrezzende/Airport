@@ -1,6 +1,6 @@
 #include "EventAirplaneDepartureRequestExcess.h"
 
-EventAirplaneDepartureRequestExcess::EventAirplaneDepartureRequestExcess(time_t eventTimeValue) : Events(eventTimeValue, CRITICAL_SITUATION)
+EventAirplaneDepartureRequestExcess::EventAirplaneDepartureRequestExcess() : Events(CRITICAL_SITUATION)
 {
 }
 
@@ -13,8 +13,8 @@ std::string EventAirplaneDepartureRequestExcess::eventDescription()
 {
    std::stringstream aux;
 
-   aux << "Pending departure requests is higher than 5.\n";
-
+   aux << "At: " << Timer::getInstance()->getFormattedTime() << " pending departure requests is higher than 5.\n";
+ 
    return aux.str();
 }
 

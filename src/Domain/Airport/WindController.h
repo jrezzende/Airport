@@ -21,7 +21,8 @@ public:
    ~WindController() = default;
 
    Wind* getCurrent() const;
-   void generateWind();
+   void generateRandomWind();
+   void requestTracker();
 
    vector<string> getWindsVector() const;
 };

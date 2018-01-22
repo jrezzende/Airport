@@ -10,11 +10,12 @@ class EventAirplaneDeparture : public Events
    std::string airplaneAirline;
    int numberOfPassengers;
 public:
-   EventAirplaneDeparture(time_t eventTimeValue, std::string vAirplaneName, std::string vAirplaneAirline, int vPassengers);
+   EventAirplaneDeparture(std::string vAirplaneName, std::string vAirplaneAirline, int vPassengers);
   ~EventAirplaneDeparture() = default;
    time_t getEventTime() override;
    std::string eventDescription() override;
    EventType getEventType() const override;
+   void setEventTime(const time_t time) override { eventTime= time; }
 };
 
 #endif //INCLUDED_AIRPLANEDEPARTURE_H

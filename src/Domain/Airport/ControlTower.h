@@ -28,12 +28,19 @@ public:
 
    bool arrivalRequestSent(Airplane& airplane);
    bool departureRequestSent(Airplane& airplane);
+   void requestTracker();
+
+   void flushArrival();
+   void flushDeparture();
 
    int getArrivalCounter() const { return arrivalCounter; }
    int getDepartureCounter() const { return departureCounter; }
    int getMaxPlanesOnGround() { return maxPlanesOnGround; }
+   void incrementPlanesOnGround() { planesOnGround++; }
+   void decrementPlanesOnGround() { planesOnGround--; }
    int getPlanesOnGround() const { return planesOnGround; }
-   int getLandingPlanesOnHold() const { return arrivalRequests.size(); }
+   int getArrivalPlanesOnHold() const { return arrivalRequests.size(); }
+   int getDeparturePlanesOnHold() const { return departureRequests.size(); }
 };
 
 #endif // INCLUDED_CONTROLTOWER_H

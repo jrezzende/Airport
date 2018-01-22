@@ -1,6 +1,6 @@
 #include "EventRunwayNowFree.h"
 
-EventRunwayNowFree::EventRunwayNowFree(time_t eventTimeValue, Directions::Direction newFreeRunway) : Events(eventTimeValue, RUNWAY_NOW_FREE)
+EventRunwayNowFree::EventRunwayNowFree(Directions::Direction newFreeRunway) : Events(RUNWAY_NOW_FREE)
 {
    runwayFree= newFreeRunway;
 }

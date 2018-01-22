@@ -2,5 +2,13 @@
 
 std::string ReportWindShift::newReport()
 {
-   return std::string();
+   std::stringstream aux;
+   std::deque<Events*> events= LogEvents::getInstance()->getEvents();
+
+   for(auto it : events) {
+      if (it->getEventType() == WIND_SHIFT)
+         aux << it->eventDescription();
+   }
+
+   return aux.str();
 }

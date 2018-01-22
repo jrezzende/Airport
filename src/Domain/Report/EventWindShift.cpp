@@ -1,6 +1,7 @@
 #include "EventWindShift.h"
+#include "Timer.h"
 
-EventWindShift::EventWindShift(time_t eventTimeValue, Directions::Direction newWindValue) : Events(eventTimeValue, WIND_SHIFT)
+EventWindShift::EventWindShift(Directions::Direction newWindValue) : Events(WIND_SHIFT)
 {
    newDir= newWindValue;
 }
@@ -14,7 +15,7 @@ std::string EventWindShift::eventDescription()
 {
    std::stringstream aux;
 
-   aux << "Wind direction changed to " << Directions::toString(newDir);
+   aux << "Wind direction changed to " << Directions::toString(newDir) << " at : " << Timer::getInstance()->getFormattedTime() << ".\n";
 
    return aux.str();
 }

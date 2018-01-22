@@ -11,7 +11,7 @@ class AirportRunway
 {
    const Directions::Direction runWayDirection;
    bool isAvailable;
-   int willBeAvailableIn;
+   unsigned long willBeAvailableIn;
 
 public:
    AirportRunway(const Directions::Direction vRunwayDirection);
@@ -20,7 +20,8 @@ public:
    Directions::Direction getRunwayDirection() const;
    void changeRunwayState(bool flag);
    bool isRunwayAvailable() const;
-   int remainingTime() const;
+   unsigned long remainingTime() const;
+   void runwayUnavailableTime(const unsigned long time) { isAvailable= false; willBeAvailableIn= time + 3; }
 };
 
 #endif // !INCLUDED_AIRPORTRUNWAY_H

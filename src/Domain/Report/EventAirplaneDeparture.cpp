@@ -1,6 +1,6 @@
 #include "EventAirplaneDeparture.h"
 
-EventAirplaneDeparture::EventAirplaneDeparture(time_t eventTimeValue, std::string vAirplaneName, std::string vAirplaneAirline, int vPassengers) : Events(eventTimeValue, DEPARTURE)
+EventAirplaneDeparture::EventAirplaneDeparture(std::string vAirplaneName, std::string vAirplaneAirline, int vPassengers) : Events(DEPARTURE)
 {
    airplaneName= vAirplaneName;
    airplaneAirline= vAirplaneAirline;

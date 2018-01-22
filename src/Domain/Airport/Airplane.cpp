@@ -3,11 +3,11 @@
 #include <iostream>
 #include <fstream>
 
-Airplane::Airplane(const unsigned long timeForArrival) : passengers(), name(""), airline(""), departureTime(0), landingTime(0)
+Airplane::Airplane(const unsigned long timeToArrive) : passengers(), name(""), airline(""), departureTime(0), timeToArrive(0)
 {
    generateRandomName();
    setTotalPassengers();
-   arrivalTime=  timeForArrival + rand() % 4 + 1;
+   arrivalTime=  timeToArrive + rand() % 4 + 1;
    std::cout << "Airplane name: " << getName() << endl;
    std::cout << "Airplane airline: " << getAirline() << "\n" << endl;
 }

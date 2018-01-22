@@ -5,12 +5,13 @@ set(CONTROLLER_SRC_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 
 set (
 	CONTROLLER_SRCS
-	cmd.cpp
+	CmdIdle.cpp
 )
 
 set (
 	CONTROLLER_HEADERS
-	cmd.h
+	Cmd.h
+	CmdIdle.h
 )
 
 add_library(controller STATIC ${CONTROLLER_SRCS} ${CONTROLLER_HEADERS})

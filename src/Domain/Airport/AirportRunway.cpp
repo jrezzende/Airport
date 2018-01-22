@@ -21,7 +21,7 @@ bool AirportRunway::isRunwayAvailable() const
    return isAvailable;
 }
 
-int AirportRunway::remainingTime() const
+unsigned long AirportRunway::remainingTime() const
 {
    return willBeAvailableIn;
 }

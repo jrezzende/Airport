@@ -6,11 +6,13 @@
 
 class EventAirplaneCapacityExcess : public Events
 {
-   EventAirplaneCapacityExcess(time_t eventTimeValue);
+public:
+   EventAirplaneCapacityExcess();
   ~EventAirplaneCapacityExcess() = default;
    time_t getEventTime() override;
    std::string eventDescription() override;
    EventType getEventType() const override;
+   void setEventTime(const time_t time) override { eventTime= time; }
 };
 
 #endif //INCLUDED_EVENTAIRPLANECAPACITYEXCESS_H

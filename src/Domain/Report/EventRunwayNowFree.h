@@ -9,11 +9,12 @@ class EventRunwayNowFree : public Events
 {
    Directions::Direction runwayFree;
 public:
-   EventRunwayNowFree(time_t eventTimeValue, Directions::Direction newFreeRunway);
+   EventRunwayNowFree(Directions::Direction newFreeRunway);
   ~EventRunwayNowFree() = default;
    time_t getEventTime() override;
    std::string eventDescription() override;
    EventType getEventType() const override;
+   void setEventTime(const time_t time) override { eventTime= time; }
 };
 
 #endif //INCLUDED_EVENTRUNWAYNOWFREE_H

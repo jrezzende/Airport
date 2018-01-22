@@ -1,6 +1,6 @@
 #include "EventAirplaneDepartureRequest.h"
 
-EventAirplaneDepartureRequest::EventAirplaneDepartureRequest(time_t eventTimeValue, std::string vAirplaneName, std::string vAirplaneAirline) : Events(eventTimeValue, DEPARTURE_REQUEST)
+EventAirplaneDepartureRequest::EventAirplaneDepartureRequest(std::string vAirplaneName, std::string vAirplaneAirline) : Events(DEPARTURE_REQUEST)
 {
    airplaneName= vAirplaneName;
    airplaneAirline= vAirplaneAirline;

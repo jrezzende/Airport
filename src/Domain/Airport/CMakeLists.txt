@@ -35,3 +35,4 @@ target_include_directories(domain PUBLIC ${DOMAIN_SRC_DIR})
 
 target_link_libraries(domain utilities)
 target_link_libraries(domain model)
+target_link_libraries(domain report)
