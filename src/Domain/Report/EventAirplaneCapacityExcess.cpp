@@ -1,7 +1,9 @@
 #include "EventAirplaneCapacityExcess.h"
+#include <iostream>
 
 EventAirplaneCapacityExcess::EventAirplaneCapacityExcess() : Events(CRITICAL_SITUATION)
 {
+   std::cout << eventDescription();
 }
 
 time_t EventAirplaneCapacityExcess::getEventTime()

@@ -3,6 +3,7 @@
 EventRunwayNowFree::EventRunwayNowFree(Directions::Direction newFreeRunway) : Events(RUNWAY_NOW_FREE)
 {
    runwayFree= newFreeRunway;
+   eventDescription();
 }
 
 time_t EventRunwayNowFree::getEventTime()

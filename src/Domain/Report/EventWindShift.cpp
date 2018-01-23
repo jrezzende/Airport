@@ -1,9 +1,11 @@
 #include "EventWindShift.h"
 #include "Timer.h"
+#include <iostream>
 
 EventWindShift::EventWindShift(Directions::Direction newWindValue) : Events(WIND_SHIFT)
 {
    newDir= newWindValue;
+   std::cout << eventDescription();
 }
 
 time_t EventWindShift::getEventTime()

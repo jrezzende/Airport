@@ -6,6 +6,7 @@ EventAirplaneToAnotherAirport::EventAirplaneToAnotherAirport(std::string vAirpla
 {
    airplaneName= vAirplaneName;
    airplaneAirline= vAirplaneAirline;
+   std::cout << eventDescription();
 }
 
 time_t EventAirplaneToAnotherAirport::getEventTime()
@@ -27,7 +28,7 @@ std::string EventAirplaneToAnotherAirport::eventDescription()
    default: destinationAirport= "";
    }
 
-   aux << airplaneName << " from the airline " << airplaneAirline << " was sent to " << destinationAirport << " due to capacity issues, at: " << Timer::getInstance()->getFormattedTime() << "\n.";
+   aux << airplaneName << " from the airline " << airplaneAirline << " was sent to " << destinationAirport << " due to capacity issues, at: " << Timer::getInstance()->getFormattedTime() << ".\n";
 
    return aux.str();
 

@@ -5,7 +5,7 @@
 std::string ReportTotalPassengers::newReport()
 {
    std::stringstream aux;
-   int totalPassengers= Model::getInstance()->getAirport().getControlTower().getArrivalCounter() 
+   const int totalPassengers= Model::getInstance()->getAirport().getControlTower().getArrivalCounter() 
    + Model::getInstance()->getAirport().getControlTower().getDepartureCounter();
 
    aux << "Currently " << totalPassengers << " arrived/departed to/from the airport.\n";

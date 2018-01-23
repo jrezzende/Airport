@@ -56,3 +56,4 @@ target_include_directories(report PUBLIC ${REPORT_SRC_DIR})
 
 target_link_libraries(report domain)
 target_link_libraries(report utilities)
+target_link_libraries(report view)

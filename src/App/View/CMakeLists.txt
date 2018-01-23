@@ -5,12 +5,12 @@ set(VIEW_SRC_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 
 set (
 	VIEW_SRCS
-	UI.cpp
+	UserI.cpp
 )
 
 set (
 	VIEW_HEADERS
-	UI.h
+	UserI.h
 )
 
 add_library(view STATIC ${VIEW_SRCS} ${VIEW_HEADERS})

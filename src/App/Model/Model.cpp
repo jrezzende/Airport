@@ -1,5 +1,4 @@
 #include "Model.h"
-#include "AirplaneController.h"
 
 Model::Model()
 {
@@ -25,7 +24,7 @@ void Model::launchModel()
 
 void Model::modelRequestTracker()
 {
-   airplaneController->trackRequests();
+   airplaneController->requestTracker();
    windController->requestTracker();
    airport->requestTracker();
 }

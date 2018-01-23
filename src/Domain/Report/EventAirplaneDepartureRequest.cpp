@@ -1,9 +1,11 @@
 #include "EventAirplaneDepartureRequest.h"
+#include <iostream>
 
 EventAirplaneDepartureRequest::EventAirplaneDepartureRequest(std::string vAirplaneName, std::string vAirplaneAirline) : Events(DEPARTURE_REQUEST)
 {
    airplaneName= vAirplaneName;
    airplaneAirline= vAirplaneAirline;
+   std::cout << eventDescription();
 }
 
 time_t EventAirplaneDepartureRequest::getEventTime()
