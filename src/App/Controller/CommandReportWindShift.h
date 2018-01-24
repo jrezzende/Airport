@@ -3,7 +3,7 @@
 #define INCLUDED_COMMANDREPORTWINDSHIFT_H
 #include "Command.h"
 
-class Model;
+class UserI;
 
 class CommandReportWindShift : public Command
 {
@@ -11,7 +11,7 @@ public:
    CommandReportWindShift() = default;
    ~CommandReportWindShift() = default;
 
-   void exec(Model& m) override;
+   void exec(UserI& ui) override;
 };
 
 #endif //INCLUDED_COMMANDREPORTWINDSHIFT_H

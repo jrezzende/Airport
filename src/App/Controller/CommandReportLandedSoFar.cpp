@@ -1,5 +1,10 @@
 #include "CommandReportLandedSoFar.h"
-
-void CommandReportLandedSoFar::exec(Model& m)
+#include "ReportLandedSoFar.h"
+void CommandReportLandedSoFar::exec(UserI& ui)
 {
+   auto reportLandedSoFar= new ReportLandedSoFar();
+   const std::string report= reportLandedSoFar->newReport();
+
+   delete reportLandedSoFar;
+   ui.printReports(report);
 }

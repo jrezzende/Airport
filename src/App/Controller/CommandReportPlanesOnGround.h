@@ -3,7 +3,7 @@
 #define INCLUDED_COMMANDREPORTPLANESONGROUND_H
 #include "Command.h"
 
-class Model;
+class UserI;
 
 class CommandReportPlanesOnGround : public Command
 {
@@ -11,7 +11,7 @@ public:
    CommandReportPlanesOnGround() = default;
    ~CommandReportPlanesOnGround() = default;
 
-   void exec(Model& m) override;
+   void exec(UserI& ui) override;
 };
 
 #endif //INCLUDED_COMMANDREPORTPLANESONGROUND_H

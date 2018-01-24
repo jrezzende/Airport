@@ -16,3 +16,5 @@ set (
 add_library(view STATIC ${VIEW_SRCS} ${VIEW_HEADERS})
 
 target_include_directories(view PUBLIC ${VIEW_SRC_DIR})
+
+target_link_libraries(view domain)

@@ -3,7 +3,7 @@
 #define INCLUDED_COMMANDREPORTTOTALPASSENGERS_H
 #include "Command.h"
 
-class Model;
+class UserI;
 
 class CommandReportTotalPassengers : public Command
 {
@@ -11,7 +11,7 @@ public:
    CommandReportTotalPassengers() = default;
    ~CommandReportTotalPassengers() = default;
 
-   void exec(Model& m) override;
+   void exec(UserI& ui) override;
 };
 
 #endif //INCLUDED_COMMANDREPORTTOTALPASSENGERS_H

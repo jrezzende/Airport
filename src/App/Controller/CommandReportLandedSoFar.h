@@ -3,7 +3,7 @@
 #define INCLUDED_COMMANDREPORTLANDEDSOFAR_H
 #include "Command.h"
 
-class Model;
+class UserI;
 
 class CommandReportLandedSoFar : public Command
 {
@@ -11,7 +11,7 @@ public:
    CommandReportLandedSoFar() = default;
    ~CommandReportLandedSoFar() = default;
 
-   void exec(Model& m) override;
+   void exec(UserI& m) override;
 };
 
 #endif //INCLUDED_COMMANDREPORTLANDEDSOFAR_H

@@ -3,7 +3,7 @@
 #define INCLUDED_CMDIDLE_H
 #include "Command.h"
 
-class Model;
+class UserI;
 
 class CommandIdle : public Command
 {
@@ -11,7 +11,7 @@ public:
    CommandIdle() = default;
    ~CommandIdle() = default;
 
-   void exec(Model& m) override;
+   void exec(UserI& ui) override;
 };
 
 #endif //INCLUDED_CMDIDLE_H

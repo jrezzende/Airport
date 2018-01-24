@@ -1,5 +1,5 @@
 #include "CommandIdle.h"
 
-void CommandIdle::exec(Model& m)
+void CommandIdle::exec(UserI& ui)
 {
 }
