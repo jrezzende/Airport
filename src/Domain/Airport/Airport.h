@@ -30,6 +30,7 @@ public:
    void enableRunwayWind(); 
    void enableRunwayTime(); 
    void requestTracker();
+   void setAirportCapacity(int capacity);
 
    bool airportAvailable() const;
 };

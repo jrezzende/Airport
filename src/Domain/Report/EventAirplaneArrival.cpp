@@ -6,7 +6,7 @@ EventAirplaneArrival::EventAirplaneArrival(std::string vAirplaneName, std::strin
    airplaneName= vAirplaneName;
    airplaneAirline= vAirplaneAirline;
    numberOfPassengers= vPassengers;
-   std::cout << eventDescription();
+   cout << eventDescription();
 }
 
 time_t EventAirplaneArrival::getEventTime()

@@ -10,7 +10,9 @@ using namespace std;
 class AirportRunway
 {
    const Directions::Direction runWayDirection;
-   bool isAvailable;
+   bool availableByWind;
+   bool availableByTime;
+
    unsigned long willBeAvailableIn;
 
 public:
@@ -18,10 +20,11 @@ public:
    ~AirportRunway() = default;
 
    Directions::Direction getRunwayDirection() const;
-   void changeRunwayState(bool flag);
+   void changeWindState(bool flag);
+   void changeTimeState(bool flag);
    bool isRunwayAvailable() const;
    unsigned long remainingTime() const;
-   void runwayUnavailableTime(const unsigned long time) { isAvailable= false; willBeAvailableIn= time + 3; }
+   void runwayUnavailableTime(const unsigned long time) { availableByWind= availableByTime= false; willBeAvailableIn= time + 3; }
 };
 
 #endif // !INCLUDED_AIRPORTRUNWAY_H

@@ -25,9 +25,6 @@ void AirplaneController::arrivalRequest(Airplane& airplane)
       totalArrivalOfPassengers+= airplane.getTotalPassengers();
 
       Model::getInstance()->airport->getControlTower().newArrivalRequest(&airplane);
-
-      auto* event= new EventAirplaneArrivalRequest(airplane.getName(), airplane.getAirline());
-      LogEvents::getInstance()->newEvent(*event);
    }
 }
 
@@ -38,9 +35,6 @@ void AirplaneController::departureRequest(Airplane& airplane)
       totalArrivalOfPassengers+= airplane.getTotalPassengers();
 
       Model::getInstance()->airport->getControlTower().newDepartureRequest(&airplane);
-
-      auto* event= new EventAirplaneDepartureRequest(airplane.getName(), airplane.getAirline());
-      LogEvents::getInstance()->newEvent(*event);
    }
 }
 

@@ -25,11 +25,7 @@ Airport::Airport()
    airportRunways[1] = new AirportRunway(Directions::EAST_WEST);
    airportRunways[2] = new AirportRunway(Directions::NORTHEAST_SOUTHWEST);
 
-   controlTower= new ControlTower(50); // test purposes only, maximum planes value comes from app
-
-   airportIsAvailable= true;
-
-   std::cout << "Airport name: " << getAirportName() << endl;
+   airportIsAvailable = false;
 }
 
 Airport::~Airport()
@@ -63,28 +59,28 @@ void Airport::enableRunwayWind()
    Wind* wind= Model::getInstance()->getWindController().getCurrent();
 
    if (wind->getWindDirection() != Directions::NORTH_SOUTH && wind->getWindDirection() != Directions::SOUTH_NORTH)
-      airportRunways[0]->changeRunwayState(false);
+      airportRunways[0]->changeWindState(false);
    else
-      airportRunways[0]->changeRunwayState(true);
+      airportRunways[0]->changeWindState(true);
 
    if (wind->getWindDirection() != Directions::EAST_WEST && wind->getWindDirection() != Directions::WEST_EAST)
-      airportRunways[1]->changeRunwayState(false);
+      airportRunways[1]->changeWindState(false);
    else
-      airportRunways[1]->changeRunwayState(true);
+      airportRunways[1]->changeWindState(true);
 
    if (wind->getWindDirection() != Directions::NORTHEAST_SOUTHWEST && wind->getWindDirection() != Directions::SOUTHWEST_NORTHEAST)
-      airportRunways[2]->changeRunwayState(false);
+      airportRunways[2]->changeWindState(false);
    else
-      airportRunways[2]->changeRunwayState(true);
+      airportRunways[2]->changeWindState(true);
 }
 
 void Airport::enableRunwayTime()
 {
    for (auto& airportRunway : airportRunways) {
-      if (!Timer::getInstance()->getActualTime() >= airportRunway->remainingTime())
-         airportRunway->changeRunwayState(false);
+      if (Timer::getInstance()->getActualTime() >= airportRunway->remainingTime())
+         airportRunway->changeTimeState(true);
       else
-         airportRunway->changeRunwayState(true);
+         airportRunway->changeTimeState(false);
    }
 }
 
@@ -96,4 +92,9 @@ void Airport::requestTracker()
    controlTower->requestTracker();
 }
 
+void Airport::setAirportCapacity(int capacity)
+{
+   controlTower= new ControlTower(capacity);
 
+   airportIsAvailable= true;
+}

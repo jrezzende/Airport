@@ -21,7 +21,6 @@ ControlTower::ControlTower(const int maxPlanesLimit) : planesOnGround(0), arriva
 void ControlTower::newArrivalRequest(Airplane* airplane)
 {
    arrivalRequests.push_back(airplane);
-   arrivalCounter+= airplane->getTotalPassengers();
    auto* event= new EventAirplaneArrivalRequest(airplane->getName(), airplane->getAirline());
    LogEvents::getInstance()->newEvent(*event);
 }
@@ -29,7 +28,6 @@ void ControlTower::newArrivalRequest(Airplane* airplane)
 void ControlTower::newDepartureRequest(Airplane* airplane)
 {
    departureRequests.push_back(airplane);
-   departureCounter+= airplane->getTotalPassengers();
    auto* event= new EventAirplaneDepartureRequest(airplane->getName(), airplane->getAirline());
    LogEvents::getInstance()->newEvent(*event);
 }
@@ -63,7 +61,7 @@ void ControlTower::flushArrival()
    if (arrivalRequests.empty())
       return;
 
-   if (planesOnGround >= maxPlanesOnGround) {
+   if (planesOnGround >= maxPlanesOnGround * 0.7) {
       auto* event= new EventAirplaneCapacityExcess();
       LogEvents::getInstance()->newEvent(*event);
    }
@@ -76,10 +74,7 @@ void ControlTower::flushArrival()
 
       runway= Model::getInstance()->getAirport().getAvailableRunway();
 
-      if (!runway)
-         it->incrementArrival();
-
-      if (it->getArrivalTime() == 8) {
+      if (Timer::getInstance()->getActualTime() - it->getArrivalTime() > 8) {
          Model::getInstance()->getAirplaneController().eraseAirplane(*it);
 
          auto* event= new EventAirplaneToAnotherAirport(it->getName(), it->getAirline());
@@ -90,7 +85,7 @@ void ControlTower::flushArrival()
       }
 
 
-      else if (!arrivalRequests.empty() && planesOnGround < maxPlanesOnGround) {
+      else if (runway && planesOnGround < maxPlanesOnGround) {
          it->setDepartureTime(unsigned long(Timer::getInstance()->getActualTime()));
          it->setArrivalTime(0);
 
@@ -99,16 +94,14 @@ void ControlTower::flushArrival()
 
          arrivalRequests.erase(arrivalRequests.begin() + count);
 
+         arrivalCounter+= it->getTotalPassengers();
+
          runway->runwayUnavailableTime(unsigned long(Timer::getInstance()->getActualTime()));
 
          planesOnGround++;
          arrivalCounter++;
       }
 
-      if (planesOnGround >= maxPlanesOnGround * 0.7) {
-         auto* event= new EventAirplaneCapacityExcess();
-         LogEvents::getInstance()->newEvent(*event);
-      }
 
       if (arrivalRequests.size() >= 5) {
          auto* event= new EventAirplaneOnHoldExcess();
@@ -141,6 +134,8 @@ void ControlTower::flushDeparture()
          LogEvents::getInstance()->newEvent(*event);
 
          departureRequests.erase(departureRequests.begin() + count);
+
+         departureCounter+= it->getTotalPassengers();
 
          runway->runwayUnavailableTime(unsigned long(Timer::getInstance()->getActualTime()));
 

@@ -8,7 +8,7 @@ class Command
 {
 public:
    Command() = default;
-   virtual ~Command()= 0;
+   virtual ~Command() {}
    virtual void exec(UserI& ui) = 0;
 };
 

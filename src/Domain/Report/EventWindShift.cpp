@@ -5,7 +5,7 @@
 EventWindShift::EventWindShift(Directions::Direction newWindValue) : Events(WIND_SHIFT)
 {
    newDir= newWindValue;
-   std::cout << eventDescription();
+   //cout << eventDescription();
 }
 
 time_t EventWindShift::getEventTime()

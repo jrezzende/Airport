@@ -9,7 +9,7 @@ Model::Model()
 
 Model* Model::model= nullptr;
 
-Model * Model::getInstance()
+Model* Model::getInstance()
 {
    if (!model)
       model= new Model();
@@ -17,14 +17,20 @@ Model * Model::getInstance()
    return model;
 }
 
-void Model::launchModel()
-{
-   Timer::getInstance()->startTime();
-}
-
 void Model::modelRequestTracker()
 {
    airplaneController->requestTracker();
    windController->requestTracker();
    airport->requestTracker();
+}
+
+void Model::launchModel()
+{
+   Timer::getInstance()->startTime();
+}
+
+void Model::setAirportCapacity(int capacity)
+{
+   getInstance();
+   airport->setAirportCapacity(capacity);
 }

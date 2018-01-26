@@ -12,7 +12,7 @@
 class UserI
 {
    static UserI* instance;
-   bool livePrinting= false;
+   bool livePrinting;
    UserI();
    ~UserI();
    std::vector <std::string> eventsOnHold;
@@ -20,6 +20,7 @@ public:
    static UserI* getInstance();
    int airportLimitOption();
    int getOption();
+   bool getLivePrinting() const { return livePrinting; }
 
    void invalidOption();
 

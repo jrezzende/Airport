@@ -20,6 +20,7 @@ public:
    static Timer* getInstance();
    unsigned long getTime();
    time_t getActualTime() const { return actualTime; }
+   void showTime(time_t timer);
 
    void aSec(unsigned long elapsed);
    void startTime();

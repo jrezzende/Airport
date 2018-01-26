@@ -3,7 +3,7 @@
 
 EventAirplaneCapacityExcess::EventAirplaneCapacityExcess() : Events(CRITICAL_SITUATION)
 {
-   std::cout << eventDescription();
+  // cout << eventDescription();
 }
 
 time_t EventAirplaneCapacityExcess::getEventTime()

@@ -1,8 +1,13 @@
 #include "UserI.h"
 #include "Timer.h"
+#include "Model.h"
 #include <iostream>
 #include <cstdlib>
 #include <iomanip>
+
+UserI::UserI() : livePrinting(false)
+{
+}
 
 UserI::~UserI()
 {
@@ -46,8 +51,6 @@ int UserI::airportLimitOption()
 
 int UserI::getOption()
 {
-   system("cls");
-
    int option;
    
    std::cout << "////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////\n";
@@ -55,14 +58,16 @@ int UserI::getOption()
    std::cout << "////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////\n";
    std::cout <<  "\t\t\t\t" << "Option 1: Number of landed planes so far." << std::endl;
    std::cout <<  "\t\t\t\t" << "Option 2: Number of planes on the ground." << std::endl;
-   std::cout <<  "\t\t\t\t" << "Option 3: Number of planes on hold and for how long." << std::endl;
+   std::cout <<  "\t\t\t\t" << "Option 3: Number of planes on hold." << std::endl;
    std::cout <<  "\t\t\t\t" << "Option 4: Number of total passengers (departure and arrival)." << std::endl;
    std::cout <<  "\t\t\t\t" << "Option 5: Wind shift report." << std::endl;
    std::cout <<  "\t\t\t\t" << "Option 6: Show critical reports." << std::endl;
-   std::cout <<  "\t\t\t\t" << "Option 0: Exit" << std::endl;
+   std::cout <<  "\t\t\t\t" << "Option 7: Live print mode" << std::endl;
+   std::cout << "\t\t\t\t" << "Option 0: Exit" << std::endl;
    std::cout << "////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////\n";
 
    std::cin >> option;
+   system("cls");
    return option;
 }
 
@@ -70,19 +75,18 @@ void UserI::invalidOption()
 {
    system("cls");
    std::cout << "Invalid Option.\n";
+   return;
 }
 
 void UserI::livePrintMode()
 {
+   changePrintMode(1);
+
    system("cls");
-
-   bool flag= true;
-
-   changePrintMode(flag);
 
    printEventsOnHold();
 
-   while (flag) {
+   while (true) {
       int stop;
       std::cin >> stop;
       if (stop)
@@ -92,7 +96,7 @@ void UserI::livePrintMode()
 
 void UserI::printEventsOnHold()
 {
-   std::cout << "Press 1 and Enter to go back to the reports" << std::endl << std::endl;
+   std::cout << "Type a random number and enter to go back" << std::endl << std::endl;
    int totalEvents= eventsOnHold.size();
 
    for (int i= 0; i < totalEvents; i++)
@@ -108,6 +112,15 @@ void UserI::checkLivePrintMode(std::string text)
    else
       eventsOnHold.push_back(text);
 }
+
+//void UserI::checkLivePrintMode(Events* event)
+//{
+//   if (livePrinting)
+//      std::cout << event->eventDescription() << std::endl;
+//   else
+//      eventsOnHold.push_back(event);
+//}
+
 
 void UserI::changePrintMode(bool flag)
 {
@@ -149,6 +162,12 @@ void UserI::printPlaneDeparture(Airplane& airplane, AirportRunway& runway)
    checkLivePrintMode(airplanedeparture.str());
 }
 
+//void UserI::printPlaneDeparture(EventAirplaneDeparture& event)
+//{
+//   cout << event.eventDescription();
+//   checkLivePrintMode(airplanedeparture.str());
+//}
+
 void UserI::printCriticalAirplaneSentToAnotherAirport(Airplane& airplane)
 {
    std::stringstream airplanesenttoanother;
@@ -180,10 +199,5 @@ void UserI::printCriticalPendingDepartureRequests()
 void UserI::printReports(std::string report)
 {
    system("cls");
-   int op= 0;
-   std::cout << "Press 1 and enter to go back" << std::endl << std::endl;
    std::cout << report << std::endl;
-   while (!op) {
-      std::cin >> op;
-   }
 }

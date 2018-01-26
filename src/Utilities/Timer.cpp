@@ -1,5 +1,8 @@
 #include "Timer.h"
 #include "windows.h"
+#include "UserI.h"
+#include "Model.h"
+#include <iostream>
 
 Timer::Timer()
 {
@@ -22,6 +25,18 @@ unsigned long Timer::getTime()
    return unsigned long(time(&actualTime));
 }
 
+void Timer::showTime(time_t timer)
+{
+   if (UserI::getInstance()->getLivePrinting()) {
+      struct tm* currentTime;
+      char buf[80];
+      currentTime= localtime(&timer);
+      strftime(buf, 80, "Actual date: %H:%M %d/%m/%y", currentTime);
+      std::cout << "--------------------------------------\n";
+      std::cout << "\n" << std::string(buf) << std::endl;
+   }
+}
+
 void Timer::aSec(const unsigned long elapsed)
 {
    Sleep(1000 - elapsed);
@@ -37,6 +52,9 @@ void Timer::startTime()
 
       if (difftime(Timer::getInstance()->getActualTime(), begTime) > 0)
          elapsedTime= begTime + unsigned long(difftime(Timer::getInstance()->getActualTime(), begTime) * 240);
+
+      showTime(elapsedTime);
+      Model::getInstance()->modelRequestTracker();
    }
 }
 

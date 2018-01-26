@@ -8,8 +8,6 @@ Airplane::Airplane(const unsigned long timeToArrive) : passengers(), name(""), a
    generateRandomName();
    setTotalPassengers();
    arrivalTime=  timeToArrive + rand() % 4 + 1;
-   std::cout << "Airplane name: " << getName() << endl;
-   std::cout << "Airplane airline: " << getAirline() << "\n" << endl;
 }
 
 void Airplane::setDepartureTime(const unsigned long timeForDeparture)

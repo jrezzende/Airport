@@ -2,7 +2,7 @@
 
 AirportRunway::AirportRunway(
    const Directions::Direction vRunwayDirection
-) : runWayDirection(vRunwayDirection), isAvailable(true), willBeAvailableIn(0)
+) : runWayDirection(vRunwayDirection), availableByTime(true), availableByWind(true), willBeAvailableIn(0)
 {
 }
 
@@ -11,14 +11,19 @@ Directions::Direction AirportRunway::getRunwayDirection() const
    return runWayDirection;
 }
 
-void AirportRunway::changeRunwayState(const bool flag)
+void AirportRunway::changeWindState(const bool flag)
 {
-   isAvailable= flag;
+   availableByWind= flag;
+}
+
+void AirportRunway::changeTimeState(bool flag)
+{
+   availableByTime= flag;
 }
 
 bool AirportRunway::isRunwayAvailable() const
 {
-   return isAvailable;
+   return availableByWind && availableByTime;
 }
 
 unsigned long AirportRunway::remainingTime() const

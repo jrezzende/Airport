@@ -3,7 +3,7 @@
 
 EventAirplaneOnHoldExcess::EventAirplaneOnHoldExcess() : Events(CRITICAL_SITUATION)
 {
-   std::cout << eventDescription();
+   //cout << eventDescription();
 }
 
 time_t EventAirplaneOnHoldExcess::getEventTime()

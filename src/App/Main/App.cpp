@@ -33,34 +33,41 @@ App * App::getInstance()
 }
 
 /////////////////////
-void runThread(Model * model)
+void runThread(Model* model, int airportCap)
 {
    model->launchModel();
+   model->modelRequestTracker();
 }
-///////////////////////
+//////////////////////
 
 void App::start()
 {
-   std::thread firstThread(runThread, (Model::getInstance()));
+   int airportCapacity= setAirportLimit();
+   auto model = Model::getInstance();
+   model->setAirportCapacity(airportCapacity);
+   std::thread firstThread(runThread, model, airportCapacity);
    commands();
 }
 
 void App::commands()
 {
+   system("cls");
    int op= ui->getOption();
    do {
       switch (op)
       {
-      case 1: cmd= new CommandReportLandedSoFar(); break;
-      case 2: cmd= new CommandReportPlanesOnGround(); break;
-      case 3: cmd= new CommandReportPlanesOnHold(); break;
-      case 4: cmd= new CommandReportTotalPassengers(); break;
-      case 5: cmd= new CommandReportWindShift(); break;
-      case 6: cmd= new CommandReportCriticalSituations(); break;
-      default: cmd= new CommandIdle(); ui->invalidOption();
+      case 1: CommandReportLandedSoFar().exec(*ui); break;
+      case 2: CommandReportPlanesOnGround().exec(*ui); break;
+      case 3: CommandReportPlanesOnHold().exec(*ui); break;
+      case 4: CommandReportTotalPassengers().exec(*ui); break;
+      case 5: CommandReportWindShift().exec(*ui); break;
+      case 6: CommandReportCriticalSituations().exec(*ui); break;
+      case 7: UserI::getInstance()->livePrintMode(); break;
+      case 0: exit(0); break;
+      default: break;
       }
-      runCmd();
-   } while (op != NULL);
+      op= ui->getOption();
+   } while (op != 999);
 }
 
 void App::runCmd()

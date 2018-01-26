@@ -18,3 +18,5 @@ set (
 add_library(utilities STATIC ${UTILITIES_HEADERS} ${UTILITIES_SRCS})
 
 target_include_directories(utilities PUBLIC ${UTILITIES_SRC_DIR})
+
+target_link_libraries(utilities view)

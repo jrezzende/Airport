@@ -6,7 +6,7 @@
 
 void main()
 {  
-   App().start();
+   App::getInstance()->start();
 }
 
 #endif // INCLUDED_AIRPORTMAIN_H

@@ -1,9 +1,10 @@
 #include "EventRunwayNowFree.h"
+#include <iostream>
 
 EventRunwayNowFree::EventRunwayNowFree(Directions::Direction newFreeRunway) : Events(RUNWAY_NOW_FREE)
 {
    runwayFree= newFreeRunway;
-   eventDescription();
+   //cout << eventDescription();
 }
 
 time_t EventRunwayNowFree::getEventTime()
