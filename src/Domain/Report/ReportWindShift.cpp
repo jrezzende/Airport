@@ -7,7 +7,7 @@ std::string ReportWindShift::newReport()
 
    for(auto it : events) {
       if (it->getEventType() == WIND_SHIFT)
-         aux << it->eventDescription();
+         aux << it->eventReportTime();
    }
 
    return aux.str();

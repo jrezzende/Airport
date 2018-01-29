@@ -45,20 +45,20 @@ void Airplane::setAirline(int const num)
 void Airplane::generateRandomName()
 {
    std::ifstream in("C:/Users/joao.mathias/source/repos/Airport/src/Domain/Airport/planes.txt");
-   std::string s;
+   std::string airplane;
 
    auto airlineCounter= 0;
-   const auto limit= RandomGen::generateRandom(1, 38);
+   const auto airplaneCounter = RandomGen::generateRandom(1, 38);
   
-   for (auto i= 0; i <= limit; i++) {
-      getline(in, s);
-       if (s == "-") {
-         getline(in, s);
+   for (auto i= 0; i <= airplaneCounter; i++) {
+      getline(in, airplane);
+       if (airplane == "-") {
+         getline(in, airplane);
          airlineCounter++;
       }
    }
 
+   setName(airplane);
    setAirline(airlineCounter);
-   setName(s);
 }
 

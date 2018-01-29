@@ -15,6 +15,7 @@ public:
    std::string eventDescription() override;
    EventType getEventType() const override;
    void setEventTime(const time_t time) override { eventTime= time; }
+   std::string eventReportTime() override;
 };
 
 #endif //INCLUDED_EVENTRUNWAYNOWFREE_H

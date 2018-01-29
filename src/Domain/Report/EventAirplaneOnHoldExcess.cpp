@@ -3,7 +3,7 @@
 
 EventAirplaneOnHoldExcess::EventAirplaneOnHoldExcess() : Events(CRITICAL_SITUATION)
 {
-   //cout << eventDescription();
+   reportTime= Timer::getInstance()->getFormattedTime();
 }
 
 time_t EventAirplaneOnHoldExcess::getEventTime()
@@ -15,7 +15,7 @@ std::string EventAirplaneOnHoldExcess::eventDescription()
 {
    std::stringstream aux;
 
-   aux << "At: " << Timer::getInstance()->getFormattedTime() << " the number of airplanes on hold is higher than 5.\n";
+   aux << "At: " << Timer::getInstance()->getFormattedTime() << " the number of airplanes on hold is higher than 5.\n\n";
 
    return aux.str();
 }
@@ -23,4 +23,13 @@ std::string EventAirplaneOnHoldExcess::eventDescription()
 EventType EventAirplaneOnHoldExcess::getEventType() const
 {
    return eventType;
+}
+
+std::string EventAirplaneOnHoldExcess::eventReportTime()
+{
+   std::stringstream aux;
+
+   aux << "At: " << getReportTime() << " the number of airplanes on hold is higher than 5.\n\n";
+
+   return aux.str();
 }

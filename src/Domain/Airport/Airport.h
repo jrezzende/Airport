@@ -17,7 +17,7 @@ class Airport
 
    Airport();
 
-   std::string airportName= "Aeroporto Internacional Hercilio Luz";
+   std::string airportName;
    bool airportIsAvailable;
 
 public:
@@ -26,13 +26,14 @@ public:
    ControlTower& getControlTower() const { return *controlTower; }
 
    const std::string& getAirportName() const { return airportName; }
-   AirportRunway* getAvailableRunway();
-   void enableRunwayWind(); 
-   void enableRunwayTime(); 
-   void requestTracker();
    void setAirportCapacity(int capacity);
-
+   AirportRunway* getAvailableRunway();
    bool airportAvailable() const;
+
+   void enableRunwayWind();
+   void enableRunwayTime();
+
+   void requestTracker();
 };
 
 #endif // !INCLUDED_AIRPORT_H

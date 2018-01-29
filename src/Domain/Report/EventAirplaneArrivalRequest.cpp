@@ -5,7 +5,6 @@ EventAirplaneArrivalRequest::EventAirplaneArrivalRequest(std::string vAirplaneNa
 {
    airplaneName= vAirplaneName;
    airplaneAirline= vAirplaneAirline;
-   // cout << eventDescription();
 }
 
 time_t EventAirplaneArrivalRequest::getEventTime()
@@ -24,4 +23,9 @@ std::string EventAirplaneArrivalRequest::eventDescription()
 EventType EventAirplaneArrivalRequest::getEventType() const
 {
    return eventType;
+}
+
+std::string EventAirplaneArrivalRequest::eventReportTime()
+{
+   return std::string();
 }

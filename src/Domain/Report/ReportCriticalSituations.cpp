@@ -9,7 +9,7 @@ std::string ReportCriticalSituations::newReport()
 
    for (auto it : events) {
       if (it->getEventType() == CRITICAL_SITUATION)
-         aux << it->eventDescription();
+         aux << it->eventReportTime();
    }
 
    return aux.str();

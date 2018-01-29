@@ -14,13 +14,13 @@ class Model
 {
    Model();
    static Model* model;
-public:
    AirplaneController* airplaneController;
    WindController* windController;
    Airport* airport;
    ControlTower* controlTower;
    LogEvents* logEvents;
 
+public:
    static Model* getInstance();
    WindController& getWindController() const { return *windController; }
    AirplaneController& getAirplaneController() const { return *airplaneController;}

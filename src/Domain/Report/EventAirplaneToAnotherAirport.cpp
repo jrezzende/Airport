@@ -6,7 +6,7 @@ EventAirplaneToAnotherAirport::EventAirplaneToAnotherAirport(std::string vAirpla
 {
    airplaneName= vAirplaneName;
    airplaneAirline= vAirplaneAirline;
-   cout << eventDescription();
+   reportTime= Timer::getInstance()->getFormattedTime();
 }
 
 time_t EventAirplaneToAnotherAirport::getEventTime()
@@ -28,7 +28,7 @@ std::string EventAirplaneToAnotherAirport::eventDescription()
    default: destinationAirport= "";
    }
 
-   aux << airplaneName << " from the airline " << airplaneAirline << " was sent to " << destinationAirport << " due to capacity issues, at: " << Timer::getInstance()->getFormattedTime() << ".\n";
+   aux << "At: " << Timer::getInstance()->getFormattedTime() << " the airplane " << airplaneName << " from the airline " << airplaneAirline << " was sent to " << destinationAirport << " due to capacity issues.\n\n";
 
    return aux.str();
 
@@ -37,4 +37,23 @@ std::string EventAirplaneToAnotherAirport::eventDescription()
 EventType EventAirplaneToAnotherAirport::getEventType() const
 {
    return eventType;
+}
+
+std::string EventAirplaneToAnotherAirport::eventReportTime()
+{
+   std::stringstream aux;
+
+   const int airportNumber= RandomGen::generateRandom(1, 2);
+   std::string destinationAirport;
+
+   switch (airportNumber)
+   {
+   case 1: destinationAirport= "Aeroporto Internacional Salgado Filho"; break;
+   case 2: destinationAirport= "Aeroporto Internacional Afonso Pena"; break;
+   default: destinationAirport= "";
+   }
+
+   aux << "At: " << getReportTime() << " the airplane " << airplaneName << " from the airline " << airplaneAirline << " was sent to " << destinationAirport << " due to capacity issues.\n\n";
+
+   return aux.str();
 }

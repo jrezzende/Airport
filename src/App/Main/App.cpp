@@ -56,13 +56,13 @@ void App::commands()
    do {
       switch (op)
       {
-      case 1: CommandReportLandedSoFar().exec(*ui); break;
-      case 2: CommandReportPlanesOnGround().exec(*ui); break;
-      case 3: CommandReportPlanesOnHold().exec(*ui); break;
-      case 4: CommandReportTotalPassengers().exec(*ui); break;
-      case 5: CommandReportWindShift().exec(*ui); break;
-      case 6: CommandReportCriticalSituations().exec(*ui); break;
-      case 7: UserI::getInstance()->livePrintMode(); break;
+      case 1: system("cls"); CommandReportLandedSoFar().exec(*ui); break;
+      case 2: system("cls"); CommandReportPlanesOnGround().exec(*ui); break;
+      case 3: system("cls"); CommandReportPlanesOnHold().exec(*ui); break;
+      case 4: system("cls"); CommandReportTotalPassengers().exec(*ui); break;
+      case 5: system("cls"); CommandReportWindShift().exec(*ui); break;
+      case 6: system("cls"); CommandReportCriticalSituations().exec(*ui); break;
+      case 7: system("cls"); UserI::getInstance()->livePrintMode(); break;
       case 0: exit(0); break;
       default: break;
       }

@@ -10,9 +10,9 @@ using namespace std;
 class AirportRunway
 {
    const Directions::Direction runWayDirection;
+
    bool availableByWind;
    bool availableByTime;
-
    unsigned long willBeAvailableIn;
 
 public:

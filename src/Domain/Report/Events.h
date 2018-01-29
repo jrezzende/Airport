@@ -28,6 +28,7 @@ public:
    virtual time_t getEventTime() = 0;
    virtual EventType getEventType() const = 0;
    virtual void setEventTime(const time_t time) = 0;
+   virtual std::string eventReportTime() = 0;
 };
 
 #endif //INCLUDED_LOG_H

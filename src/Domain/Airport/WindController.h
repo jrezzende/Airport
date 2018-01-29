@@ -20,11 +20,11 @@ public:
    WindController();
    ~WindController() = default;
 
-   Wind* getCurrent() const;
    void generateRandomWind();
-   void requestTracker();
+   Wind* getCurrent() const { return current; }
+   vector<string> getWindsVector() const { return nextWinds; }
 
-   vector<string> getWindsVector() const;
+   void requestTracker();
 };
 
 #endif // INCLUDED_WINDGENERATOR_H

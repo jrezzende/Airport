@@ -4,7 +4,6 @@
 EventRunwayNowFree::EventRunwayNowFree(Directions::Direction newFreeRunway) : Events(RUNWAY_NOW_FREE)
 {
    runwayFree= newFreeRunway;
-   //cout << eventDescription();
 }
 
 time_t EventRunwayNowFree::getEventTime()
@@ -24,4 +23,9 @@ std::string EventRunwayNowFree::eventDescription()
 EventType EventRunwayNowFree::getEventType() const
 {
    return eventType;
+}
+
+std::string EventRunwayNowFree::eventReportTime()
+{
+   return std::string();
 }

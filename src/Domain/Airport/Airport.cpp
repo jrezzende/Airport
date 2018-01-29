@@ -26,6 +26,7 @@ Airport::Airport()
    airportRunways[2] = new AirportRunway(Directions::NORTHEAST_SOUTHWEST);
 
    airportIsAvailable = false;
+   airportName= "Aeroporto Internacional Hercilio Luz";
 }
 
 Airport::~Airport()

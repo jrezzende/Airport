@@ -3,6 +3,7 @@
 #include <sstream>
 #include <iostream>
 #include "EventWindShift.h"
+#include "UserI.h"
 #include "LogEvents.h"
 
 WindController::WindController()
@@ -12,11 +13,6 @@ WindController::WindController()
 
    auto* event= new EventWindShift(current->getWindDirection());
    LogEvents::getInstance()->newEvent(*event);
-}
-
-Wind * WindController::getCurrent() const
-{
-   return current;
 }
 
 void WindController::generateRandomWind()
@@ -37,11 +33,7 @@ void WindController::requestTracker()
 
       auto* event= new EventWindShift(current->getWindDirection());
       LogEvents::getInstance()->newEvent(*event);
+      UserI::getInstance()->printWindShift(*current);
    }
-}
-
-vector<string> WindController::getWindsVector() const
-{
-   return nextWinds;
 }
 

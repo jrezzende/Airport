@@ -14,7 +14,7 @@ class UserI
    static UserI* instance;
    bool livePrinting;
    UserI();
-   ~UserI();
+   ~UserI() = default;
    std::vector <std::string> eventsOnHold;
 public:
    static UserI* getInstance();

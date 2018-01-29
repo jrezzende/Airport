@@ -8,6 +8,7 @@
 class EventWindShift : public Events
 {
    Directions::Direction newDir;
+   std::string reportTime;
 public:
    EventWindShift(Directions::Direction newWindValue);
    ~EventWindShift() = default;
@@ -15,6 +16,8 @@ public:
    std::string eventDescription() override;
    EventType getEventType() const override;
    void setEventTime(const time_t time) override { eventTime= time; }
+   std::string eventReportTime() override;
+   std::string getReportTime() const { return reportTime; }
 };
 
 #endif //INCLUDED_EVENTWINDSHIFT_H

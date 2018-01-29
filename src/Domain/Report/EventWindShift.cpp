@@ -5,7 +5,7 @@
 EventWindShift::EventWindShift(Directions::Direction newWindValue) : Events(WIND_SHIFT)
 {
    newDir= newWindValue;
-   //cout << eventDescription();
+   reportTime= Timer::getInstance()->getFormattedTime();
 }
 
 time_t EventWindShift::getEventTime()
@@ -17,12 +17,21 @@ std::string EventWindShift::eventDescription()
 {
    std::stringstream aux;
 
-   aux << "Wind direction changed to " << Directions::toString(newDir) << " at : " << Timer::getInstance()->getFormattedTime() << ".\n";
+   aux << "Wind direction changed to " << Directions::toString(newDir) << " at: " << Timer::getInstance()->getFormattedTime() << ".\n";
+                                                                                
+   return aux.str();                                                            
+}                                                                               
+                                                                                
+EventType EventWindShift::getEventType() const                                  
+{                                                                               
+   return eventType;                                                            
+}                                                                               
+                                                                                
+std::string EventWindShift::eventReportTime()                                   
+{                                                                               
+   std::stringstream aux;                                                       
+                                                                                
+   aux << "Wind direction changed to " << Directions::toString(newDir) << " at: " << getReportTime() << ".\n\n";
 
    return aux.str();
-}
-
-EventType EventWindShift::getEventType() const
-{
-   return eventType;
 }

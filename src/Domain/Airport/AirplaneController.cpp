@@ -20,21 +20,21 @@ void AirplaneController::newAirplane()
 
 void AirplaneController::arrivalRequest(Airplane& airplane)
 {
-   if (!Model::getInstance()->airport->getControlTower().arrivalRequestSent(airplane)) {
+   if (!Model::getInstance()->getAirport().getControlTower().arrivalRequestSent(airplane)) {
       airplane.setTotalPassengers();
       totalArrivalOfPassengers+= airplane.getTotalPassengers();
 
-      Model::getInstance()->airport->getControlTower().newArrivalRequest(&airplane);
+      Model::getInstance()->getAirport().getControlTower().newArrivalRequest(&airplane);
    }
 }
 
 void AirplaneController::departureRequest(Airplane& airplane)
 {
-   if (!Model::getInstance()->airport->getControlTower().departureRequestSent(airplane)) {
+   if (!Model::getInstance()->getAirport().getControlTower().departureRequestSent(airplane)) {
       airplane.setTotalPassengers();
       totalArrivalOfPassengers+= airplane.getTotalPassengers();
 
-      Model::getInstance()->airport->getControlTower().newDepartureRequest(&airplane);
+      Model::getInstance()->getAirport().getControlTower().newDepartureRequest(&airplane);
    }
 }
 

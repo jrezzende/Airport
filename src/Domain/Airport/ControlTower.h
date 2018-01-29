@@ -12,6 +12,8 @@ class ControlTower
    int planesOnGround;
    int arrivalCounter;;
    int departureCounter;
+   bool criticalSituationAirportCapacity;
+   bool criticalSituationsPlanesOnHold;
 
    std::deque<Airplane*> arrivalRequests;
    std::deque<Airplane*> departureRequests;

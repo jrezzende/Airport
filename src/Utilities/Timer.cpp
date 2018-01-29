@@ -27,7 +27,8 @@ unsigned long Timer::getTime()
 
 void Timer::showTime(time_t timer)
 {
-   if (UserI::getInstance()->getLivePrinting()) {
+   bool fakeflag= false;
+   if (fakeflag) {
       struct tm* currentTime;
       char buf[80];
       currentTime= localtime(&timer);

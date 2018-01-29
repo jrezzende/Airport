@@ -4,6 +4,7 @@
 #include "EventAirplaneCapacityExcess.h"
 #include "AirportRunway.h"
 #include "Model.h"
+#include "UserI.h"
 #include "AirplaneController.h"
 #include "EventAirplaneToAnotherAirport.h"
 #include "EventAirplaneArrival.h"
@@ -12,8 +13,10 @@
 #include "EventAirplaneDeparture.h"
 #include "EventAirplaneDepartureRequestExcess.h"
 #include "EventAirplaneDepartureRequest.h"
+#include "EventRunwayNowFree.h"
 
-ControlTower::ControlTower(const int maxPlanesLimit) : planesOnGround(0), arrivalCounter(0), departureCounter(0)
+ControlTower::ControlTower(const int maxPlanesLimit) : planesOnGround(0), arrivalCounter(0), 
+departureCounter(0), criticalSituationAirportCapacity(false), criticalSituationsPlanesOnHold(false)
 {
    maxPlanesOnGround= maxPlanesLimit;
 }
@@ -23,6 +26,7 @@ void ControlTower::newArrivalRequest(Airplane* airplane)
    arrivalRequests.push_back(airplane);
    auto* event= new EventAirplaneArrivalRequest(airplane->getName(), airplane->getAirline());
    LogEvents::getInstance()->newEvent(*event);
+   UserI::getInstance()->printAirplaneArrivalRequest(*airplane);
 }
 
 void ControlTower::newDepartureRequest(Airplane* airplane)
@@ -30,6 +34,7 @@ void ControlTower::newDepartureRequest(Airplane* airplane)
    departureRequests.push_back(airplane);
    auto* event= new EventAirplaneDepartureRequest(airplane->getName(), airplane->getAirline());
    LogEvents::getInstance()->newEvent(*event);
+   UserI::getInstance()->printPlaneDepartureRequest(*airplane);
 }
 
 bool ControlTower::arrivalRequestSent(Airplane& airplane)
@@ -61,9 +66,14 @@ void ControlTower::flushArrival()
    if (arrivalRequests.empty())
       return;
 
-   if (planesOnGround >= maxPlanesOnGround * 0.7) {
+   if (planesOnGround < maxPlanesOnGround * 0.7)
+      criticalSituationAirportCapacity= false;
+
+   if (planesOnGround >= maxPlanesOnGround * 0.7 && criticalSituationAirportCapacity == false) {
       auto* event= new EventAirplaneCapacityExcess();
       LogEvents::getInstance()->newEvent(*event);
+      criticalSituationAirportCapacity= true;
+      UserI::getInstance()->printCriticalOnGroundHigherThanSeventyPercent();
    }
 
    AirportRunway* runway;
@@ -79,11 +89,11 @@ void ControlTower::flushArrival()
 
          auto* event= new EventAirplaneToAnotherAirport(it->getName(), it->getAirline());
          LogEvents::getInstance()->newEvent(*event);
+         UserI::getInstance()->printCriticalAirplaneSentToAnotherAirport(*it);
 
          arrivalRequests.erase(arrivalRequests.begin() + count);
          count--;
       }
-
 
       else if (runway && planesOnGround < maxPlanesOnGround) {
          it->setDepartureTime(unsigned long(Timer::getInstance()->getActualTime()));
@@ -91,6 +101,7 @@ void ControlTower::flushArrival()
 
          auto* event= new EventAirplaneArrival(it->getName(), it->getAirline(), it->getTotalPassengers());
          LogEvents::getInstance()->newEvent(*event);
+         UserI::getInstance()->printPlaneArrival(*it, *runway);
 
          arrivalRequests.erase(arrivalRequests.begin() + count);
 
@@ -102,10 +113,14 @@ void ControlTower::flushArrival()
          arrivalCounter++;
       }
 
+      if (arrivalRequests.size() < 5)
+         criticalSituationsPlanesOnHold= false;
 
-      if (arrivalRequests.size() >= 5) {
+      if (arrivalRequests.size() >= 5 && criticalSituationsPlanesOnHold == false) {
          auto* event= new EventAirplaneOnHoldExcess();
          LogEvents::getInstance()->newEvent(*event);
+         UserI::getInstance()->printCriticalOnHoldHigherThanFive();
+         criticalSituationsPlanesOnHold= true;
       }
 
       count++;
@@ -132,6 +147,7 @@ void ControlTower::flushDeparture()
 
          auto* event= new EventAirplaneDeparture(it->getName(), it->getAirline(), it->getTotalPassengers());
          LogEvents::getInstance()->newEvent(*event);
+         UserI::getInstance()->printPlaneDeparture(*it, *runway);
 
          departureRequests.erase(departureRequests.begin() + count);
 
@@ -148,6 +164,7 @@ void ControlTower::flushDeparture()
    if(departureRequests.size() >= 5) {
       auto* event= new EventAirplaneDepartureRequestExcess();
       LogEvents::getInstance()->newEvent(*event);
+      UserI::getInstance()->printCriticalPendingDepartureRequests();
    }
 
 }

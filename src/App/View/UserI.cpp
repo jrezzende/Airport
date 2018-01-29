@@ -9,10 +9,6 @@ UserI::UserI() : livePrinting(false)
 {
 }
 
-UserI::~UserI()
-{
-}
-
 UserI* UserI::instance= nullptr;
 
 UserI* UserI::getInstance()
@@ -27,23 +23,26 @@ int UserI::airportLimitOption()
 {
    int option;
 
-   std::cout << "///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////\n";
-   std::cout << std::setw(80) << "Define the maximum number planes on the ground." << std::endl;
    std::cout << "////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////\n";
 
-   std::cout << R"(                                     -.                 `|.     
-                                     |:\-,              .| \.
-                                     |: `.------------------------------------.
-                                     / /   o o o o o o o o o o o o o.-.o o   (_`. 
-                                    /_ \_              .     .=     |'|         `)  
-                                         ``"""""""""""//    /  """"" `"""------"'   
-                                                    <//   /_(+   
-                                                    //  /      
-                                                   // /      
-                                                 ----'
+   std::cout << R"(                      \----------------------------------\
+                       \                                  \        __
+                        \      DEFINE THE MAXIMUM          \       | \
+                         >     NUMBER OF AIRPLANES          >------|  \       ______
+                        /      ON AIRPORT'S GROUND          /       --- \_____/**|_|_\____  |
+                       /                                  /          \_______ --------- __>-}
+                      /----------------------------------/              /  \_____|_____/   |
+                                                                        *         |
+                                                                                 {O}
+                    
+                           /*\       /*\       /*\       /*\       /*\       /*\       /*\
+                          |***|     |***|     |***|     |***|     |***|     |***|     |***|
+                           \*/       \*/ ____  \*/       \*/       \*/       \*/       \*/
+                            |         |  |  |   |         |         |         |         |
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////)";
 
-   
+   std::cout << std::setw(65) << "Enter a number: ";
    std::cin >> option;
 
    return option;
@@ -54,7 +53,7 @@ int UserI::getOption()
    int option;
    
    std::cout << "////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////\n";
-   std::cout << std::setw(65) << "General Reports" << std::endl;
+   std::cout << std::setw(65) << Model::getInstance()->getAirport().getAirportName() << " -> General Reports" << std::endl;
    std::cout << "////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////\n";
    std::cout <<  "\t\t\t\t" << "Option 1: Number of landed planes so far." << std::endl;
    std::cout <<  "\t\t\t\t" << "Option 2: Number of planes on the ground." << std::endl;
@@ -89,14 +88,18 @@ void UserI::livePrintMode()
    while (true) {
       int stop;
       std::cin >> stop;
-      if (stop)
+      if (stop) {
+         changePrintMode(0);
+         system("cls");
          break;
+      }
    }
 }
 
 void UserI::printEventsOnHold()
 {
-   std::cout << "Type a random number and enter to go back" << std::endl << std::endl;
+   std::cout << "Type a random number and enter to cancel live print mode" << std::endl << std::endl;
+
    int totalEvents= eventsOnHold.size();
 
    for (int i= 0; i < totalEvents; i++)
@@ -113,15 +116,6 @@ void UserI::checkLivePrintMode(std::string text)
       eventsOnHold.push_back(text);
 }
 
-//void UserI::checkLivePrintMode(Events* event)
-//{
-//   if (livePrinting)
-//      std::cout << event->eventDescription() << std::endl;
-//   else
-//      eventsOnHold.push_back(event);
-//}
-
-
 void UserI::changePrintMode(bool flag)
 {
    livePrinting= flag;
@@ -130,7 +124,7 @@ void UserI::changePrintMode(bool flag)
 void UserI::printWindShift(Wind& current)
 {
    std::stringstream windshift;
-   windshift << "Wind shift detected at " << Timer::getInstance()->getFormattedTime() << ", wind has changed to " << current.getWindDirection() << ".\n";
+   windshift << "Wind shift detected at " << Timer::getInstance()->getFormattedTime() << ", wind has changed to " << Directions::toString(current.getWindDirection()) << ".\n";
    checkLivePrintMode(windshift.str());
 }
 
@@ -144,7 +138,7 @@ void UserI::printAirplaneArrivalRequest(Airplane& airplane)
 void UserI::printPlaneArrival(Airplane& airplane, AirportRunway& runway)
 {
    std::stringstream airplanearrival;
-   airplanearrival << airplane.getName() << " from the airline: " << airplane.getAirline() << " landed at the airport using the " << runway.getRunwayDirection() << " runway at: " << Timer::getInstance()->getFormattedTime() << ".\n";
+   airplanearrival << airplane.getName() << " from the airline: " << airplane.getAirline() << " landed at the airport using the " << Directions::toString(runway.getRunwayDirection()) << " runway at: " << Timer::getInstance()->getFormattedTime() << ".\n";
    checkLivePrintMode(airplanearrival.str());
 }
 
@@ -158,20 +152,14 @@ void UserI::printPlaneDepartureRequest(Airplane& airplane)
 void UserI::printPlaneDeparture(Airplane& airplane, AirportRunway& runway)
 {
    std::stringstream airplanedeparture;
-   airplanedeparture << airplane.getName() << " from the airline: " << airplane.getAirline() << " departed from the airport using the " << runway.getRunwayDirection() << " runway at: " << Timer::getInstance()->getFormattedTime() << ".\n";
+   airplanedeparture << airplane.getName() << " from the airline: " << airplane.getAirline() << " departed from the airport using the " << Directions::toString(runway.getRunwayDirection()) << " runway at: " << Timer::getInstance()->getFormattedTime() << ".\n";
    checkLivePrintMode(airplanedeparture.str());
 }
-
-//void UserI::printPlaneDeparture(EventAirplaneDeparture& event)
-//{
-//   cout << event.eventDescription();
-//   checkLivePrintMode(airplanedeparture.str());
-//}
 
 void UserI::printCriticalAirplaneSentToAnotherAirport(Airplane& airplane)
 {
    std::stringstream airplanesenttoanother;
-   airplanesenttoanother << airplane.getName() << " had to be sent to another airport due to airport issues at: " << Timer::getInstance()->getFormattedTime() << ".\n";
+   airplanesenttoanother << "At: " << Timer::getInstance()->getFormattedTime() << " the airplane " << airplane.getName() << " had to be sent to another airport due to airport issues.\n";
    checkLivePrintMode(airplanesenttoanother.str());
 }
 
